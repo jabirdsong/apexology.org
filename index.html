@@ -618,7 +618,7 @@
             <div class="ci"><div class="ci-icon">◈</div>Free demo. Zero commitment</div>
         </div>
         <div class="reveal">
-            <form class="c-form" onsubmit="submitForm(event)">
+            <form class="c-form" action="https://formspree.io/f/mykddldk" method="POST">
                 <div class="c-row">
                     <div class="c-field"><label class="c-lbl">Your Name</label><input class="c-in" type="text" placeholder="Jane Smith" required></div>
                     <div class="c-field"><label class="c-lbl">Business Name</label><input class="c-in" type="text" placeholder="Smith's Landscaping" required></div>
@@ -740,14 +740,6 @@ Be specific to the business type. Sound human, not generic.`}]
     btn.disabled=false;btn.textContent='Generate →';
 }
 
-/* FORM */
-function submitForm(e){
-    e.preventDefault();
-    const btn=e.target.querySelector('.c-sub');
-    btn.textContent='✓ Received — we\'ll be in touch within 24 hours.';
-    btn.style.background='#2d6a3f';
-    btn.disabled=true;
-}
 </script>
 </body>
 </html>

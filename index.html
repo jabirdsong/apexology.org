@@ -620,16 +620,16 @@
         <div class="reveal">
             <form class="c-form" action="https://formspree.io/f/mykddldk" method="POST">
                 <div class="c-row">
-                    <div class="c-field"><label class="c-lbl">Your Name</label><input class="c-in" type="text" placeholder="Jane Smith" required></div>
-                    <div class="c-field"><label class="c-lbl">Business Name</label><input class="c-in" type="text" placeholder="Smith's Landscaping" required></div>
+                    <div class="c-field"><label class="c-lbl">Your Name</label><input class="c-in" type="text" name="name" placeholder="Jane Smith" required></div>
+                    <div class="c-field"><label class="c-lbl">Business Name</label><input class="c-in" type="text" name="name" placeholder="Smith's Landscaping" required></div>
                 </div>
                 <div class="c-row">
-                    <div class="c-field"><label class="c-lbl">Email Address</label><input class="c-in" type="email" placeholder="jane@yourbusiness.com" required></div>
-                    <div class="c-field"><label class="c-lbl">Phone Number</label><input class="c-in" type="tel" placeholder="(512) 555-0100"></div>
+                    <div class="c-field"><label class="c-lbl">Email Address</label><input class="c-in" type="email" name="name" placeholder="jane@yourbusiness.com" required></div>
+                    <div class="c-field"><label class="c-lbl">Phone Number</label><input class="c-in" type="tel" name="phone" placeholder="(512) 555-0100"></div>
                 </div>
                 <div class="c-field">
                     <label class="c-lbl">Industry</label>
-                    <select class="c-in" style="background:none;cursor:pointer;">
+                    <select class="c-in" name="industry" style="background:none;cursor:pointer;">
                         <option value="" style="background:#111118;">Select your industry</option>
                         <option style="background:#111118;">Tax & Accounting</option>
                         <option style="background:#111118;">Restaurant & Food</option>
@@ -643,7 +643,7 @@
                 </div>
                 <div class="c-ta">
                     <label class="c-lbl">Tell us about your business</label>
-                    <textarea class="c-in" placeholder="What do you do, where are you located, and what's your biggest challenge right now?"></textarea>
+                    <textarea class="c-in" name="message" placeholder="What do you do, where are you located, and what's your biggest challenge right now?"></textarea>
                 </div>
                 <button type="submit" class="c-sub">Send My Request →</button>
             </form>

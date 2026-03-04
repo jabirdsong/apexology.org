@@ -30,14 +30,16 @@
         }
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
         html{scroll-behavior:smooth;}
-        body{background:var(--black);color:var(--w);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+        body{background:var(--black);color:var(--w);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+        body.using-mouse{cursor:none;}
 
         /* GRAIN */
         body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.45;}
 
         /* CURSOR */
-        .cur-dot{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.15s ease;}
-        .cur-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(201,168,76,0.45);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s;}
+        .cur-dot{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.15s ease;opacity:0;}
+        .cur-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(201,168,76,0.45);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s;opacity:0;}
+        body.using-mouse .cur-dot,body.using-mouse .cur-ring{opacity:1;}
 
         /* NAV */
         nav{position:fixed;top:0;width:100%;z-index:500;padding:1.6rem 5rem;display:flex;justify-content:space-between;align-items:center;transition:all 0.4s;}
@@ -49,7 +51,7 @@
         .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--w);}
         .nav-logo span{color:var(--gold);}
         .nav-tag{display:flex;flex-direction:column;gap:0.1rem;}
-        .nav-tag-line{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);line-height:1.35;font-style:italic;}
+        .nav-tag-line{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);line-height:1.35;font-style:italic;}
         .nav-tag-line em{font-style:italic;color:var(--gold);font-style:normal;}
         .nav-links{display:flex;gap:2.2rem;list-style:none;}
         .nav-links a{color:var(--w55);text-decoration:none;font-size:0.76rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s;position:relative;}
@@ -83,7 +85,7 @@
         .scroll-track{width:1px;height:56px;background:var(--w25);position:relative;overflow:hidden;}
         .scroll-track::after{content:'';position:absolute;top:-100%;width:100%;height:45%;background:var(--gold);animation:scrollDown 1.8s ease-in-out infinite;}
         @keyframes scrollDown{0%{top:-45%;}100%{top:145%;}}
-        .scroll-lbl{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--w25);writing-mode:vertical-rl;}
+        .scroll-lbl{font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--w25);writing-mode:vertical-rl;}
 
         /* BUTTONS */
         .btn{display:inline-block;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:1px;cursor:pointer;border:none;transition:all 0.3s;position:relative;overflow:hidden;}
@@ -94,6 +96,13 @@
         .btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(201,168,76,0.25);}
         .btn-ghost{background:none;color:var(--w55);border:1px solid var(--w10);}
         .btn-ghost:hover{color:var(--w);border-color:var(--w25);}
+
+        /* ACCESSIBILITY */
+        .skip-link{position:absolute;top:-100%;left:1rem;background:var(--gold);color:var(--black);padding:0.6rem 1.2rem;font-size:0.82rem;font-weight:500;text-decoration:none;z-index:9999;border-radius:1px;}
+        .skip-link:focus{top:1rem;}
+        *:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+        a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+        input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:0;}
 
         /* MARQUEE */
         .marquee{background:var(--gold);padding:0.88rem 0;overflow:hidden;white-space:nowrap;}
@@ -158,7 +167,7 @@
         .founder-body p{color:var(--w55);font-size:0.92rem;line-height:1.88;margin-bottom:1rem;}
         .founder-body p strong{color:var(--w);font-weight:500;}
         .founder-certs{margin-top:2rem;padding:1.5rem 2rem;background:var(--s2);border:1px solid var(--gold-bd);border-radius:2px;}
-        .cert-label{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+        .cert-label{font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
         .cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;}
         .cert-item{display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;color:var(--w55);}
         .cert-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0;}
@@ -169,7 +178,7 @@
 
         /* DISCOVERY BAR */
         .discovery-bar{display:flex;justify-content:space-between;align-items:center;background:var(--s2);border:1px solid var(--gold-bd);padding:2.5rem 3rem;margin-top:4.5rem;margin-bottom:1px;gap:2rem;}
-        .disc-tag{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+        .disc-tag{font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
         .disc-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--w);margin-bottom:0.4rem;}
         .disc-sub{font-size:0.83rem;color:var(--w55);line-height:1.65;max-width:480px;}
         .disc-right{display:flex;align-items:center;gap:2rem;flex-shrink:0;}
@@ -180,7 +189,7 @@
         .pc{background:var(--black);padding:3rem 2.5rem;position:relative;transition:background 0.3s;}
         .pc:hover{background:var(--s3);}
         .pc.feat{background:var(--s2);}
-        .feat-tag{position:absolute;top:-1px;right:2rem;background:var(--gold);color:var(--black);font-size:0.6rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;padding:0.28rem 0.85rem;}
+        .feat-tag{position:absolute;top:-1px;right:2rem;background:var(--gold);color:var(--black);font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;padding:0.28rem 0.85rem;}
         .pc-tier{font-size:0.67rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
         .pc-starting{font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--w55);margin-bottom:0.3rem;}
         .pc-amt{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:600;color:var(--w);line-height:1;}
@@ -206,7 +215,7 @@
         .c-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-bd);}
         .c-field{background:var(--s1);padding:1.25rem 1.4rem;display:flex;flex-direction:column;transition:background 0.3s;}
         .c-field:focus-within{background:var(--s2);}
-        .c-lbl{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--w55);margin-bottom:0.4rem;}
+        .c-lbl{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--w55);margin-bottom:0.4rem;}
         .c-in{background:none;border:none;outline:none;color:var(--w);font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:300;}
         .c-in::placeholder{color:var(--w25);}
         .c-ta{background:var(--s1);padding:1.25rem 1.4rem;transition:background 0.3s;}
@@ -221,7 +230,7 @@
         .f-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;letter-spacing:0.22em;}
         .f-logo span{color:var(--gold);}
         .f-copy{font-size:0.73rem;color:var(--w55);}
-        .f-tag{font-size:0.7rem;color:var(--w25);font-style:italic;}
+        .f-tag{font-size:0.72rem;color:var(--w55);font-style:italic;}
 
         /* ANIMATIONS */
         @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
@@ -248,6 +257,8 @@
     </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<main id="main-content">
 
 <!-- CURSOR -->
 <div class="cur-dot" id="curDot"></div>
@@ -256,12 +267,7 @@
 <!-- NAV -->
 <nav id="nav">
     <a href="#" class="nav-brand">
-        <img src="APEXOLOGY.png" alt="Apexology — Digital Agency Austin Texas" class="nav-logo-img">
-        <div class="nav-divider"></div>
-        <div class="nav-tag">
-            <span class="nav-tag-line">We study <em>what works.</em></span>
-            <span class="nav-tag-line">We build <em>what wins.</em></span>
-        </div>
+        <img src="APEXOLOGY.png" alt="Apexology" class="nav-logo-img">
     </a>
     <ul class="nav-links">
         <li><a href="#value">About</a></li>
@@ -275,12 +281,12 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<section class="hero" id="home" tabindex="-1">
     <div class="hero-grid"></div>
     <div class="hero-orb"></div>
     <div class="hero-orb2"></div>
     <div class="hero-inner">
-        <div class="hero-badge"><div class="badge-dot"></div>Austin, Texas · Est. 2026</div>
+        
         <h1>Your <span class="typing-wrap"><span class="typing-text" id="typEl"></span><span class="typing-cur"></span></span><br>deserves to be <em>found.</em></h1>
         <p class="hero-sub">We study what gets businesses found. Then we build it. Your business is great — the right customers just haven't found you yet.</p>
         <div class="hero-actions">
@@ -476,7 +482,7 @@
         <!-- Llano & Lime -->
         <div class="demo-card reveal" style="background:var(--s2);padding:2.8rem;display:flex;flex-direction:column;gap:1.8rem;transition:background 0.3s;cursor:default;" onmouseenter="this.style.background='var(--s3)'" onmouseleave="this.style.background='var(--s2)'">
             <div>
-                <div style="font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Restaurant · Food & Beverage</div>
+                <div style="font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Restaurant · Food & Beverage</div>
                 <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin-bottom:0.5rem;">Llano <span style="color:var(--gold);">&</span> Lime</div>
                 <div style="font-size:0.78rem;color:var(--w55);line-height:1.7;">Modern Tex-Mex on South Congress. Full menu presentation, reservation form, events section, and editorial typography that matches how good the food actually is.</div>
             </div>
@@ -492,18 +498,18 @@
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;">
                 <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Menu</span>
-                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Reservations</span>
-                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Events</span>
+                    <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);border:1px solid var(--w25);padding:0.2rem 0.6rem;">Menu</span>
+                    <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);border:1px solid var(--w25);padding:0.2rem 0.6rem;">Reservations</span>
+                    <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);border:1px solid var(--w25);padding:0.2rem 0.6rem;">Events</span>
                 </div>
-                <a href="llanolime.html" target="_blank" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;white-space:nowrap;transition:border-color 0.3s;" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.3)'">View Demo →</a>
+                <a href="llanolime.html" target="_blank" style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;white-space:nowrap;transition:border-color 0.3s;" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.3)'">View Demo →</a>
             </div>
         </div>
 
         <!-- Solis Wellness -->
         <div class="demo-card reveal" style="background:var(--s2);padding:2.8rem;display:flex;flex-direction:column;gap:1.8rem;transition:background 0.3s;cursor:default;" onmouseenter="this.style.background='var(--s3)'" onmouseleave="this.style.background='var(--s2)'">
             <div>
-                <div style="font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Wellness · Med Spa</div>
+                <div style="font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Wellness · Med Spa</div>
                 <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin-bottom:0.5rem;">Solis <em style="font-weight:300;color:var(--gold);">Wellness Studio</em></div>
                 <div style="font-size:0.78rem;color:var(--w55);line-height:1.7;">A spa that needed to feel as calm as the experience inside. Dark luxury aesthetic, treatment list, booking form, and membership pricing — all centered around slowing the visitor down.</div>
             </div>
@@ -520,18 +526,18 @@
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;">
                 <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Treatments</span>
-                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Booking</span>
-                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Membership</span>
+                    <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);border:1px solid var(--w25);padding:0.2rem 0.6rem;">Treatments</span>
+                    <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);border:1px solid var(--w25);padding:0.2rem 0.6rem;">Booking</span>
+                    <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);border:1px solid var(--w25);padding:0.2rem 0.6rem;">Membership</span>
                 </div>
-                <a href="soliswellness.html" target="_blank" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;white-space:nowrap;transition:border-color 0.3s;" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.3)'">View Demo →</a>
+                <a href="soliswellness.html" target="_blank" style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;white-space:nowrap;transition:border-color 0.3s;" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.3)'">View Demo →</a>
             </div>
         </div>
 
         <!-- Ridgeline -->
         <div class="demo-card reveal" style="background:var(--s2);padding:2.8rem;display:flex;flex-direction:column;gap:1.8rem;transition:background 0.3s;cursor:default;" onmouseenter="this.style.background='var(--s3)'" onmouseleave="this.style.background='var(--s2)'">
             <div>
-                <div style="font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Home Services · Residential</div>
+                <div style="font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Home Services · Residential</div>
                 <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin-bottom:0.5rem;">Ridgeline <em style="font-weight:300;color:var(--gold);">Home Services</em></div>
                 <div style="font-size:0.78rem;color:var(--w55);line-height:1.7;">A contractor site built on trust, not flash. Services grid, process steps, testimonials, and a quote form that converts. Light theme to stand out in a category full of dark, generic sites.</div>
             </div>
@@ -558,11 +564,11 @@
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;">
                 <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Services</span>
-                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Reviews</span>
-                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Quote Form</span>
+                    <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);border:1px solid var(--w25);padding:0.2rem 0.6rem;">Services</span>
+                    <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);border:1px solid var(--w25);padding:0.2rem 0.6rem;">Reviews</span>
+                    <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);border:1px solid var(--w25);padding:0.2rem 0.6rem;">Quote Form</span>
                 </div>
-                <a href="ridgeline.html" target="_blank" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;white-space:nowrap;transition:border-color 0.3s;" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.3)'">View Demo →</a>
+                <a href="ridgeline.html" target="_blank" style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;white-space:nowrap;transition:border-color 0.3s;" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.3)'">View Demo →</a>
             </div>
         </div>
 
@@ -570,7 +576,7 @@
 
     <!-- Section footer note -->
     <div class="reveal" style="margin-top:3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--w10);padding-top:2rem;">
-        <p style="font-size:0.8rem;color:var(--w25);font-style:italic;max-width:560px;">These are demo builds — fictional businesses created to show range across industries and design styles. Your demo will be built specifically for your business, your neighborhood, and your customers.</p>
+        <p style="font-size:0.8rem;color:var(--w55);font-style:italic;max-width:560px;">These are demo builds — fictional businesses created to show range across industries and design styles. Your demo will be built specifically for your business, your neighborhood, and your customers.</p>
         <a href="#contact" class="btn btn-gold" style="flex-shrink:0;"><span>Get Your Free Demo →</span></a>
     </div>
 </section>
@@ -596,20 +602,20 @@
         <div class="reveal">
             <form class="c-form" action="https://formspree.io/f/mykddldk" method="POST">
                 <div class="c-row">
-                    <div class="c-field"><label class="c-lbl">Your Name</label><input class="c-in" type="text" name="name" placeholder="Jane Smith" required></div>
-                    <div class="c-field"><label class="c-lbl">Business Name</label><input class="c-in" type="text" name="business_name" placeholder="Smith's Landscaping" required></div>
+                    <div class="c-field"><label class="c-lbl" for="f-name">Your Name</label><input class="c-in" id="f-name" type="text" name="name" placeholder="Jane Smith" required aria-required="true"></div>
+                    <div class="c-field"><label class="c-lbl" for="f-biz">Business Name</label><input class="c-in" id="f-biz" type="text" name="business_name" placeholder="Smith's Landscaping" required aria-required="true"></div>
                 </div>
                 <div class="c-row">
-                    <div class="c-field"><label class="c-lbl">Email Address</label><input class="c-in" type="email" name="email" placeholder="jane@yourbusiness.com" required></div>
-                    <div class="c-field"><label class="c-lbl">Phone Number</label><input class="c-in" type="tel" name="phone" placeholder="(512) 555-0100"></div>
+                    <div class="c-field"><label class="c-lbl" for="f-email">Email Address</label><input class="c-in" id="f-email" type="email" name="email" placeholder="jane@yourbusiness.com" required aria-required="true"></div>
+                    <div class="c-field"><label class="c-lbl" for="f-phone">Phone Number</label><input class="c-in" id="f-phone" type="tel" name="phone" placeholder="(512) 555-0100"></div>
                 </div>
                 <div class="c-field">
-                    <label class="c-lbl">Location</label>
-                    <input class="c-in" type="text" name="location" placeholder="Austin, Round Rock, Leander...">
+                    <label class="c-lbl" for="f-location">Location</label>
+                    <input class="c-in" id="f-location" type="text" name="location" placeholder="Austin, Round Rock, Leander...">
                 </div>
                 <div class="c-field">
-                    <label class="c-lbl">Industry</label>
-                    <select class="c-in" name="industry" style="background:none;cursor:pointer;">
+                    <label class="c-lbl" for="f-industry">Industry</label>
+                    <select class="c-in" id="f-industry" name="industry" style="background:none;cursor:pointer;">
                         <option value="" style="background:#111118;">Select your industry</option>
                         <option style="background:#111118;">Tax & Accounting</option>
                         <option style="background:#111118;">Restaurant & Food</option>
@@ -622,8 +628,8 @@
                     </select>
                 </div>
                 <div class="c-ta">
-                    <label class="c-lbl">Tell us about your business</label>
-                    <textarea class="c-in" name="message" placeholder="What do you do, where are you located, and what's your biggest challenge right now?"></textarea>
+                    <label class="c-lbl" for="f-message">Tell us about your business</label>
+                    <textarea class="c-in" id="f-message" name="message" placeholder="What do you do, where are you located, and what's your biggest challenge right now?"></textarea>
                 </div>
                 <button type="submit" class="c-sub">Send My Request →</button>
             </form>
@@ -632,6 +638,7 @@
 </section>
 
 <!-- FOOTER -->
+</main>
 <footer>
     <div class="f-logo">APEX<span>OLOGY</span></div>
     <div class="f-copy">© 2026 Apexology. Austin, Texas. All rights reserved.</div>
@@ -639,12 +646,16 @@
 </footer>
 
 <script>
-/* CURSOR */
+/* CURSOR — only activates for mouse users, preserves system cursor for keyboard nav */
 const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
-let mx=0,my=0,rx=0,ry=0;
+let mx=0,my=0,rx=0,ry=0,mouseUsed=false;
 document.addEventListener('mousemove',e=>{
+    if(!mouseUsed){mouseUsed=true;document.body.classList.add('using-mouse');}
     mx=e.clientX;my=e.clientY;
     dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+document.addEventListener('keydown',()=>{
+    mouseUsed=false;document.body.classList.remove('using-mouse');
 });
 (function animRing(){
     rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;

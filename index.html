@@ -49,7 +49,6 @@
         .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--w);}
         .nav-logo span{color:var(--gold);}
         .nav-tag{display:flex;flex-direction:column;gap:0.1rem;}
-        /* KEY CHANGE: gold only on "what works" and "what wins" */
         .nav-tag-line{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);line-height:1.35;font-style:italic;}
         .nav-tag-line em{font-style:italic;color:var(--gold);font-style:normal;}
         .nav-links{display:flex;gap:2.2rem;list-style:none;}
@@ -103,15 +102,7 @@
         .mq-inner span::before{content:'✦';margin-right:2.5rem;opacity:0.4;}
         @keyframes mqScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-        /* STATS */
-        .stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--s1);border-top:2px solid var(--gold);border-bottom:1px solid var(--gold-bd);}
-        .stat{padding:3rem 2rem;text-align:center;border-right:1px solid var(--gold-bd);position:relative;overflow:hidden;transition:background 0.3s;}
-        .stat:last-child{border-right:none;}
-        .stat::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.4s;}
-        .stat:hover::after{transform:scaleX(1);}
-        .stat:hover{background:var(--s2);}
-        .stat-n{font-family:'Cormorant Garamond',serif;font-size:2.9rem;font-weight:600;color:var(--gold);display:block;line-height:1;}
-        .stat-l{font-size:0.7rem;color:var(--w55);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.5rem;display:block;}
+
 
         /* SECTION SYSTEM */
         .sec{padding:8rem 5rem;}
@@ -143,30 +134,10 @@
         .svc-shine{position:absolute;top:0;left:0;width:100%;height:0;background:linear-gradient(180deg,var(--gold-dim) 0%,transparent 100%);transition:height 0.5s;}
         .svc:hover .svc-shine{height:100%;}
         .svc:hover{background:var(--s3);}
-        .svc-n{font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:600;color:var(--w05);line-height:1;margin-bottom:1.5rem;position:relative;z-index:1;}
+        .svc-n{font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:600;color:rgba(240,237,230,0.22);line-height:1;margin-bottom:1.5rem;position:relative;z-index:1;}
         .svc h3{font-size:1.05rem;font-weight:500;margin-bottom:0.8rem;position:relative;z-index:1;}
         .svc p{font-size:0.85rem;color:var(--w55);line-height:1.75;position:relative;z-index:1;}
         .svc-ft{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--w10);font-size:0.73rem;color:var(--gold);letter-spacing:0.06em;position:relative;z-index:1;}
-
-        /* DEMO */
-        .demo-center{max-width:820px;margin:0 auto;text-align:center;}
-        .demo-center .sec-title{margin:1rem 0 0.8rem;}
-        .demo-center>p{color:var(--w55);font-size:0.95rem;line-height:1.75;margin-bottom:3rem;}
-        .demo-row{display:grid;grid-template-columns:1fr 1fr auto;gap:1px;background:var(--gold-bd);border:1px solid var(--gold-bd);margin-bottom:1.5rem;}
-        .demo-in{background:var(--s2);border:none;outline:none;padding:1.1rem 1.4rem;color:var(--w);font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:300;transition:background 0.3s;}
-        .demo-in:focus{background:var(--s3);}
-        .demo-in::placeholder{color:var(--w25);}
-        .demo-go{background:var(--gold);color:var(--black);border:none;padding:1.1rem 1.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:background 0.3s;white-space:nowrap;}
-        .demo-go:hover{background:var(--gold-lt);}
-        .demo-go:disabled{opacity:0.55;cursor:not-allowed;}
-        .demo-out{background:var(--s2);border:1px solid var(--gold-bd);padding:2rem 2.5rem;text-align:left;display:none;}
-        .demo-out.show{display:block;}
-        .demo-tag-lbl{font-size:0.63rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
-        .demo-tag-lbl::after{content:'';flex:1;height:1px;background:var(--gold-bd);}
-        .demo-body{font-size:0.9rem;color:var(--w80);line-height:1.85;white-space:pre-wrap;}
-        .demo-loader{display:flex;align-items:center;gap:0.8rem;color:var(--w55);font-size:0.85rem;}
-        .spin{width:15px;height:15px;border:1.5px solid var(--gold-bd);border-top-color:var(--gold);border-radius:50%;animation:spin 0.7s linear infinite;}
-        @keyframes spin{to{transform:rotate(360deg);}}
 
         /* PROCESS */
         .proc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:3.5rem;margin-top:5rem;position:relative;}
@@ -174,56 +145,9 @@
         .p-item{position:relative;}
         .p-dot{width:11px;height:11px;border:1px solid var(--gold-bd);border-radius:50%;background:var(--s1);margin-bottom:2rem;position:relative;z-index:1;transition:all 0.3s;}
         .p-item:hover .p-dot{border-color:var(--gold);background:var(--gold);}
-        .p-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:600;color:var(--w05);line-height:1;margin-bottom:1rem;}
+        .p-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:600;color:rgba(240,237,230,0.22);line-height:1;margin-bottom:1rem;}
         .p-item h4{font-size:0.95rem;font-weight:500;margin-bottom:0.55rem;}
         .p-item p{font-size:0.82rem;color:var(--w55);line-height:1.65;}
-
-        /* BEFORE / AFTER */
-        .ba-wrap{margin-top:4rem;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-bd);border:1px solid var(--gold-bd);}
-        .ba-side{padding:3.5rem 3rem;position:relative;overflow:hidden;}
-        .ba-before{background:var(--s2);}
-        .ba-after{background:var(--black);}
-        .ba-label{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:0.8rem;}
-        .ba-label-before{color:var(--w25);}
-        .ba-label-after{color:var(--gold);}
-        .ba-label::before{content:'';width:18px;height:1px;background:currentColor;flex-shrink:0;}
-
-        /* Google Maps mockup */
-        .maps-card{background:var(--s3);border:1px solid var(--w10);border-radius:4px;padding:1.5rem;max-width:320px;}
-        .maps-top{display:flex;gap:0.8rem;align-items:flex-start;margin-bottom:1.2rem;}
-        .maps-pin{width:32px;height:32px;background:var(--gold-dim);border:1px solid var(--gold-bd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;}
-        .maps-name{font-size:0.88rem;font-weight:500;color:var(--w);margin-bottom:0.2rem;}
-        .maps-type{font-size:0.72rem;color:var(--w55);}
-        .maps-stars{display:flex;align-items:center;gap:0.4rem;margin-bottom:1rem;}
-        .stars{color:var(--gold);font-size:0.75rem;letter-spacing:0.05em;}
-        .maps-rating{font-size:0.75rem;color:var(--w55);}
-        .maps-row{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.6rem;}
-        .maps-icon{font-size:0.75rem;color:var(--w25);width:16px;}
-        .maps-detail{font-size:0.78rem;color:var(--w55);}
-        .maps-no-site{display:flex;align-items:center;gap:0.6rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--w10);}
-        .no-site-badge{font-size:0.68rem;color:var(--w25);letter-spacing:0.05em;border:1px solid var(--w10);padding:0.25rem 0.6rem;border-radius:2px;}
-
-        /* Browser after mockup */
-        .browser{background:var(--black);border:1px solid var(--gold-bd);border-radius:3px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,0.55);max-width:380px;}
-        .b-bar{background:var(--s3);padding:0.65rem 1rem;display:flex;align-items:center;gap:0.7rem;border-bottom:1px solid var(--gold-bd);}
-        .bd{width:7px;height:7px;border-radius:50%;}
-        .bd:nth-child(1){background:#ff5f57;}.bd:nth-child(2){background:#ffbd2e;}.bd:nth-child(3){background:#28c941;}
-        .b-url{margin-left:0.4rem;flex:1;background:var(--s2);border-radius:2px;padding:0.28rem 0.7rem;font-size:0.62rem;color:var(--w55);}
-        .b-body{padding:1.4rem;}
-        .b-hero-blk{background:linear-gradient(135deg,#1a150a,#0e0e1a);border-radius:2px;padding:1.4rem;margin-bottom:0.8rem;}
-        .b-h1{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--w);margin-bottom:0.35rem;}
-        .b-p{font-size:0.6rem;color:var(--w55);line-height:1.5;}
-        .b-cta-btn{display:inline-block;margin-top:0.6rem;background:var(--gold);color:var(--black);padding:0.26rem 0.65rem;border-radius:1px;font-size:0.56rem;font-weight:500;}
-        .b-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;}
-        .b-card{background:var(--s3);border-radius:2px;padding:0.65rem;}
-        .b-ln{height:3px;background:var(--w10);border-radius:1px;margin-bottom:0.3rem;}
-        .b-ln.s{width:55%;}
-
-        /* Caption */
-        .ba-caption{grid-column:1/-1;padding:2.5rem 3rem;background:var(--s1);border-top:1px solid var(--gold-bd);display:flex;align-items:center;justify-content:space-between;gap:2rem;}
-        .ba-caption-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.5vw,2.2rem);font-weight:300;font-style:italic;color:var(--w);}
-        .ba-caption-text em{color:var(--gold);font-style:italic;}
-        .ba-caption-sub{font-size:0.82rem;color:var(--w55);max-width:300px;line-height:1.65;text-align:right;}
 
         /* FOUNDER */
         .founder-grid{display:grid;grid-template-columns:0.65fr 1.35fr;gap:6rem;align-items:center;}
@@ -233,10 +157,23 @@
         .founder-body .sec-title{font-size:clamp(2rem,3.2vw,3rem);margin-bottom:2rem;}
         .founder-body p{color:var(--w55);font-size:0.92rem;line-height:1.88;margin-bottom:1rem;}
         .founder-body p strong{color:var(--w);font-weight:500;}
+        .founder-certs{margin-top:2rem;padding:1.5rem 2rem;background:var(--s2);border:1px solid var(--gold-bd);border-radius:2px;}
+        .cert-label{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+        .cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;}
+        .cert-item{display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;color:var(--w55);}
+        .cert-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0;}
         .founder-sig{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--w10);display:flex;align-items:center;gap:1.2rem;}
         .sig-ln{width:28px;height:1px;background:var(--gold);}
         .sig-name{font-size:0.95rem;font-weight:500;}
         .sig-title{font-size:0.75rem;color:var(--gold);margin-top:0.2rem;}
+
+        /* DISCOVERY BAR */
+        .discovery-bar{display:flex;justify-content:space-between;align-items:center;background:var(--s2);border:1px solid var(--gold-bd);padding:2.5rem 3rem;margin-top:4.5rem;margin-bottom:1px;gap:2rem;}
+        .disc-tag{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+        .disc-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--w);margin-bottom:0.4rem;}
+        .disc-sub{font-size:0.83rem;color:var(--w55);line-height:1.65;max-width:480px;}
+        .disc-right{display:flex;align-items:center;gap:2rem;flex-shrink:0;}
+        .disc-price{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--gold);}
 
         /* PRICING */
         .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-bd);border:1px solid var(--gold-bd);margin-top:4.5rem;}
@@ -245,6 +182,7 @@
         .pc.feat{background:var(--s2);}
         .feat-tag{position:absolute;top:-1px;right:2rem;background:var(--gold);color:var(--black);font-size:0.6rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;padding:0.28rem 0.85rem;}
         .pc-tier{font-size:0.67rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+        .pc-starting{font-size:0.67rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--w55);margin-bottom:0.3rem;}
         .pc-amt{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:600;color:var(--w);line-height:1;}
         .pc-sub{font-size:0.78rem;color:var(--w55);margin:0.4rem 0 2rem;}
         .pc-list{list-style:none;margin-bottom:2.5rem;}
@@ -304,11 +242,7 @@
             .svc-grid,.price-grid{grid-template-columns:1fr;}
             .proc-row{grid-template-columns:repeat(2,1fr);}
             .proc-row::before{display:none;}
-            .ba-wrap{grid-template-columns:1fr;}
-            .ba-caption{grid-column:1;}
-            .ba-caption-sub{display:none;}
             footer{flex-direction:column;gap:1rem;text-align:center;}
-            .demo-row{grid-template-columns:1fr;}
             .c-row{grid-template-columns:1fr;}
         }
     </style>
@@ -332,9 +266,10 @@
     <ul class="nav-links">
         <li><a href="#value">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#demo">Live Demo</a></li>
-        <li><a href="#work">Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#founder">Founder</a></li>
         <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="#contact" class="nav-cta">Get Started</a></li>
     </ul>
 </nav>
@@ -347,9 +282,9 @@
     <div class="hero-inner">
         <div class="hero-badge"><div class="badge-dot"></div>Austin, Texas · Est. 2026</div>
         <h1>Your <span class="typing-wrap"><span class="typing-text" id="typEl"></span><span class="typing-cur"></span></span><br>deserves to be <em>found.</em></h1>
-        <p class="hero-sub">We study what gets businesses found. Then we build it. Your business is great. The right customers just haven't found you yet.</p>
+        <p class="hero-sub">We study what gets businesses found. Then we build it. Your business is great — the right customers just haven't found you yet.</p>
         <div class="hero-actions">
-            <a href="#demo" class="btn btn-gold"><span>See It In Action</span></a>
+            <a href="#contact" class="btn btn-gold"><span>Get Your Free Demo</span></a>
             <a href="#value" class="btn btn-ghost"><span>How We Work →</span></a>
         </div>
     </div>
@@ -363,46 +298,40 @@
 <div class="marquee">
     <div class="mq-inner">
         <span>Custom Websites</span><span>Built to Be Found</span><span>Austin Texas</span>
-        <span>2-Week Delivery</span><span>Value First</span><span>Problem Solvers</span>
+        <span>Strategy First</span><span>Value First</span><span>Problem Solvers</span>
         <span>Local Specialists</span><span>Local Business Growth</span><span>Results Driven</span>
         <span>Custom Websites</span><span>Built to Be Found</span><span>Austin Texas</span>
-        <span>2-Week Delivery</span><span>Value First</span><span>Problem Solvers</span>
+        <span>Strategy First</span><span>Value First</span><span>Problem Solvers</span>
         <span>Local Specialists</span><span>Local Business Growth</span><span>Results Driven</span>
     </div>
 </div>
 
-<!-- STATS -->
-<div class="stats">
-    <div class="stat reveal"><span class="stat-n">2 wks</span><span class="stat-l">Average Delivery</span></div>
-    <div class="stat reveal d1"><span class="stat-n">40%</span><span class="stat-l">Below Austin Market</span></div>
-    <div class="stat reveal d2"><span class="stat-n">100%</span><span class="stat-l">Local. Proven. Personal.</span></div>
-    <div class="stat reveal d3"><span class="stat-n">$0</span><span class="stat-l">Cost to See Your Demo</span></div>
-</div>
+
 
 <!-- VALUE — black -->
 <section class="sec" id="value">
     <div class="val-grid">
         <div>
-            <div class="eyebrow reveal"><div class="ey-ln"></div>The Value We Bring</div>
-            <h2 class="sec-title reveal">Your customers are <em>already searching.</em> Make sure they find you.</h2>
+            <div class="eyebrow reveal"><div class="ey-ln"></div>What Apexology Is</div>
+            <h2 class="sec-title reveal">Not just a web agency. A <em>business growth advisor</em> who builds the solutions.</h2>
             <div class="val-body">
-                <p class="reveal">97% of consumers research a business online before spending money locally. Your reputation is already earned. Your craft is sharp. <strong>The only thing missing is your digital presence.</strong></p>
-                <p class="reveal">Apexology closes that gap. Expert strategy, fast delivery, and results that actually move the needle. Without the traditional price tag or the traditional wait.</p>
-                <a href="#contact" class="btn btn-gold reveal" style="margin-top:1.5rem;"><span>Get Your Free Demo →</span></a>
+                <p class="reveal">Most agencies lead with deliverables. We lead with diagnosis. Before we build anything, we'll identify exactly what's costing your business customers — then build the solution that fixes it. <strong>The website is the result of the strategy. Not a replacement for it.</strong></p>
+                <p class="reveal">You've put years into building something people love. But if Google can't find you, your best customers can't either. In a city growing as fast as Austin, the businesses that win aren't always the best — they're the ones that show up first.</p>
+                <a href="#contact" class="btn btn-gold reveal" style="margin-top:1.5rem;"><span>Get Your Free Consultation →</span></a>
             </div>
         </div>
         <div class="val-cards reveal">
             <div class="v-card">
                 <div class="v-num">I</div>
-                <div class="v-txt"><h4>Visibility you haven't captured yet</h4><p>Every day without a website, potential customers find your competitor instead. We change that equation permanently.</p></div>
+                <div class="v-txt"><h4>We diagnose before we build</h4><p>Every project starts with figuring out what's actually costing you customers — not just assuming a website's the answer.</p></div>
             </div>
             <div class="v-card">
                 <div class="v-num">II</div>
-                <div class="v-txt"><h4>Speed that traditional agencies can't match</h4><p>We deliver professional websites in 2 weeks. Not 2 months. So you start capturing customers sooner.</p></div>
+                <div class="v-txt"><h4>Enterprise strategy, local price point</h4><p>3.5 years of consulting experience means you'll get the kind of strategic thinking big companies pay agencies six figures for — without the six-figure price tag.</p></div>
             </div>
             <div class="v-card">
                 <div class="v-num">III</div>
-                <div class="v-txt"><h4>A partner who stays ahead of the curve</h4><p>You get an expert who studies what works, implements what wins, and keeps your digital presence growing every month.</p></div>
+                <div class="v-txt"><h4>A partner who stays ahead of the curve</h4><p>AI tools, SEO algorithm shifts, platform changes — we track what's coming so you're not scrambling to catch up when something changes.</p></div>
             </div>
         </div>
     </div>
@@ -417,40 +346,22 @@
             <div class="svc-shine"></div>
             <div class="svc-n">01</div>
             <h3>Website Design & Build</h3>
-            <p>A professional, mobile-first website built around your business. Not a template. Custom copy, responsive design, contact forms, and booking integration delivered in 2 weeks.</p>
-            <div class="svc-ft">Starting at $1,200 · 2-week delivery</div>
+            <p>A professional, mobile-first website built around your business — not a template dropped into your name. Custom copy written for your customers, responsive design that works on every screen, and booking forms that actually get used. We've built sites for barbershops in Leander and tax offices in Austin. Every one of them custom.</p>
+            <div class="svc-ft">Starting at $1,200</div>
         </div>
         <div class="svc reveal d1">
             <div class="svc-shine"></div>
             <div class="svc-n">02</div>
             <h3>Content & Strategy</h3>
-            <p>We research your business, your customers, and your market. Then we craft copy and messaging that speaks directly to the people you want to reach. Your voice, sharpened and amplified.</p>
+            <p>We'll research your business, your actual customers, and what your competitors in Austin are missing. Then we'll write copy that speaks directly to the people you want through your door — not copy that could belong to anyone.</p>
             <div class="svc-ft">Included in every project</div>
         </div>
         <div class="svc reveal d2">
             <div class="svc-shine"></div>
             <div class="svc-n">03</div>
             <h3>SEO & Monthly Growth</h3>
-            <p>Ongoing optimization that keeps your website climbing Google rankings every month. We write the content, track the results, and adjust the strategy. You focus on your business.</p>
+            <p>Ongoing SEO that keeps your website climbing Google every month. We'll write the content, track what's working, and adjust when something isn't. You run the business. We'll make sure people can find it.</p>
             <div class="svc-ft">From $500/month · Ongoing growth</div>
-        </div>
-    </div>
-</section>
-
-<!-- DEMO — black -->
-<section class="sec-sm" id="demo">
-    <div class="demo-center">
-        <div class="eyebrow reveal" style="justify-content:center;"><div class="ey-ln"></div>Live Demo<div class="ey-ln"></div></div>
-        <h2 class="sec-title reveal">Watch us build your website copy <em>in real time.</em></h2>
-        <p class="reveal">Enter your business name and type below. We'll generate real, custom website copy for your specific business in seconds. Exactly how every Apexology project begins.</p>
-        <div class="demo-row reveal">
-            <input class="demo-in" id="dName" type="text" placeholder="Your business name...">
-            <input class="demo-in" id="dType" type="text" placeholder="What type of business?">
-            <button class="demo-go" id="dBtn" onclick="runDemo()">Generate →</button>
-        </div>
-        <div class="demo-out" id="dOut">
-            <div class="demo-tag-lbl">Your Custom Website Copy</div>
-            <div class="demo-body" id="dBody"></div>
         </div>
     </div>
 </section>
@@ -460,71 +371,10 @@
     <div class="eyebrow reveal"><div class="ey-ln"></div>How It Works</div>
     <h2 class="sec-title reveal">From first conversation to <em>live website.</em> Four steps.</h2>
     <div class="proc-row">
-        <div class="p-item reveal"><div class="p-dot"></div><div class="p-num">01</div><h4>Free Consultation</h4><p>We learn about your business, your goals, and your customers. Real conversation, no jargon, no pressure.</p></div>
-        <div class="p-item reveal d1"><div class="p-dot"></div><div class="p-num">02</div><h4>Content & Strategy</h4><p>We research your market, study your customers, and develop messaging that sets your business apart from day one.</p></div>
-        <div class="p-item reveal d2"><div class="p-dot"></div><div class="p-num">03</div><h4>Design & Build</h4><p>We build your professional website with your photos, branding, and pricing. You review and approve everything.</p></div>
-        <div class="p-item reveal d3"><div class="p-dot"></div><div class="p-num">04</div><h4>Launch & Grow</h4><p>Your site goes live. Ongoing SEO and content keeps you climbing Google every single month.</p></div>
-    </div>
-</section>
-
-<!-- BEFORE / AFTER — black -->
-<section class="sec" id="work">
-    <div class="eyebrow reveal"><div class="ey-ln"></div>The Difference We Make</div>
-    <h2 class="sec-title reveal">This is what <em>before and after</em> Apexology looks like.</h2>
-    <div class="ba-wrap reveal">
-        <!-- BEFORE -->
-        <div class="ba-side ba-before">
-            <div class="ba-label ba-label-before">Before Apexology</div>
-            <div class="maps-card">
-                <div class="maps-top">
-                    <div class="maps-pin">📍</div>
-                    <div>
-                        <div class="maps-name">Local Business, Austin TX</div>
-                        <div class="maps-type">Local Business · Austin, Texas</div>
-                    </div>
-                </div>
-                <div class="maps-stars">
-                    <span class="stars">★★★★★</span>
-                    <span class="maps-rating">4.9 · 47 reviews</span>
-                </div>
-                <div class="maps-row"><span class="maps-icon">📞</span><span class="maps-detail">(512) 555-0147</span></div>
-                <div class="maps-row"><span class="maps-icon">📍</span><span class="maps-detail">Austin, TX 78701</span></div>
-                <div class="maps-row"><span class="maps-icon">🕐</span><span class="maps-detail">Mon–Fri 9am–6pm</span></div>
-                <div class="maps-no-site">
-                    <span class="maps-icon">🌐</span>
-                    <span class="no-site-badge">No website</span>
-                </div>
-            </div>
-            <p style="margin-top:1.5rem;font-size:0.8rem;color:var(--w25);line-height:1.6;">4.9 stars. Loyal customers. Real talent.<br>But invisible to anyone searching online.</p>
-        </div>
-        <!-- AFTER -->
-        <div class="ba-side ba-after">
-            <div class="ba-label ba-label-after">After Apexology</div>
-            <div class="browser">
-                <div class="b-bar">
-                    <div class="bd"></div><div class="bd"></div><div class="bd"></div>
-                    <div class="b-url">localbusiness-austin.com</div>
-                </div>
-                <div class="b-body">
-                    <div class="b-hero-blk">
-                        <div class="b-h1">Austin's Most Trusted Local Business</div>
-                        <div class="b-p">Professional service, community roots, and results that speak for themselves. Serving Austin since day one.</div>
-                        <div class="b-cta-btn">Book a Free Consultation</div>
-                    </div>
-                    <div class="b-cards">
-                        <div class="b-card"><div class="b-ln"></div><div class="b-ln s"></div></div>
-                        <div class="b-card"><div class="b-ln"></div><div class="b-ln s"></div></div>
-                        <div class="b-card"><div class="b-ln"></div><div class="b-ln s"></div></div>
-                    </div>
-                </div>
-            </div>
-            <p style="margin-top:1.5rem;font-size:0.8rem;color:var(--w55);line-height:1.6;">Professional. Discoverable. Booking customers<br>who never would have found them before.</p>
-        </div>
-        <!-- CAPTION -->
-        <div class="ba-caption">
-            <div class="ba-caption-text">From invisible to <em>undeniable.</em></div>
-            <div class="ba-caption-sub">This is what we build for every client. A digital presence that finally matches the quality of their business. Ready to see yours?</div>
-        </div>
+        <div class="p-item reveal"><div class="p-dot"></div><div class="p-num">01</div><h4>Discovery Session</h4><p>A focused $150 conversation where we'll figure out exactly what's costing your business customers and map out what to build. No fluff, no pitch — just clarity.</p></div>
+        <div class="p-item reveal d1"><div class="p-dot"></div><div class="p-num">02</div><h4>Content & Strategy</h4><p>We'll study your market and your customers, then write messaging that actually sounds like you — not like every other business in Austin.</p></div>
+        <div class="p-item reveal d2"><div class="p-dot"></div><div class="p-num">03</div><h4>Design & Build</h4><p>We build your website around your photos, your pricing, and your brand. You'll review everything before anything goes live.</p></div>
+        <div class="p-item reveal d3"><div class="p-dot"></div><div class="p-num">04</div><h4>Launch & Grow</h4><p>Your site goes live. We'll keep pushing it up Google every month after that — because launch day isn't the finish line.</p></div>
     </div>
 </section>
 
@@ -537,12 +387,21 @@
         <div class="founder-body">
             <div class="eyebrow reveal"><div class="ey-ln"></div>The Founder</div>
             <h2 class="sec-title reveal">Built by someone who <em>studies</em> what works. And builds what wins.</h2>
-            <p class="reveal">Jared is the founder of Apexology, a growth partner for small businesses in the Austin area. With a background in supply chain management and years leading cross-functional teams, he brings systems thinking and strategic execution to every project. He builds more than websites. He builds the foundation businesses need to become the best version of themselves online.</p>
-            <p class="reveal">Jared started Apexology because he believes Keep Austin Weird isn't just a phrase. It means the barbershop, the tax office, and the family restaurant deserve the same presence as the big brands.</p>
-            <p class="reveal"><strong>At Apexology, a website isn't just a page. It's where your best version begins.</strong></p>
+            <p class="reveal">Jared spent 3.5 years at a global consulting firm advising organizations on operations, systems, and growth strategy. That background — combined with hands-on AI tool development and web experience — means every Apexology client gets the kind of strategic thinking that was previously reserved for larger companies with bigger agencies.</p>
+            <p class="reveal">He started Apexology because he believes "Keep Austin Weird" isn't just a bumper sticker. That means supporting your small businesses: the barbershop, the tax office, and the family restaurant deserve the same presence as the big brands. A website isn't just a page. It's where your best version begins.</p>
+            <div class="founder-certs reveal">
+                <div class="cert-label">Credentials & Training</div>
+                <div class="cert-grid">
+                    <div class="cert-item"><div class="cert-dot"></div>Stanford AI Professional Program (applied to web & automation)</div>
+                    <div class="cert-item"><div class="cert-dot"></div>SAP Systems & CRM (enterprise deployments)</div>
+                    <div class="cert-item"><div class="cert-dot"></div>Generative AI — Udacity (client content systems)</div>
+                    <div class="cert-item"><div class="cert-dot"></div>Data Analytics — Udacity (SEO & performance tracking)</div>
+                    <div class="cert-item"><div class="cert-dot"></div>3.5 Years Enterprise Consulting (operations & growth strategy)</div>
+                </div>
+            </div>
             <div class="founder-sig reveal">
                 <div class="sig-ln"></div>
-                <div><div class="sig-name">Jared Birdsong</div><div class="sig-title">Founder & Web Specialist, Apexology</div></div>
+                <div><div class="sig-name">Jared Birdsong</div><div class="sig-title">Founder, Apexology</div></div>
             </div>
         </div>
     </div>
@@ -551,39 +410,22 @@
 <!-- PRICING — black -->
 <section class="sec" id="pricing">
     <div class="eyebrow reveal"><div class="ey-ln"></div>Transparent Pricing</div>
-    <h2 class="sec-title reveal">Exceptional value. <em>No surprises.</em></h2>
+    <h2 class="sec-title reveal">Transparent pricing. <em>No surprises, ever.</em></h2>
+    <div class="discovery-bar reveal">
+        <div class="disc-left">
+            <div class="disc-tag">Start Here</div>
+            <div class="disc-title">Discovery Session</div>
+            <div class="disc-sub">A focused 60-minute conversation to find out what's costing your business customers — and map exactly what we'd build to fix it.</div>
+        </div>
+        <div class="disc-right">
+            <div class="disc-price">$150</div>
+            <a href="#contact" class="btn btn-gold"><span>Book Your Session</span></a>
+        </div>
+    </div>
     <div class="price-grid">
         <div class="pc reveal">
-            <div class="pc-tier">Presence</div>
-            <div class="pc-amt">$1,200</div>
-            <div class="pc-sub">One-time · Your business online, fast</div>
-            <ul class="pc-list">
-                <li>Professional custom website</li>
-                <li>Custom content & messaging</li>
-                <li>Mobile-first responsive design</li>
-                <li>Contact & booking form</li>
-                <li>Google Maps integration</li>
-                <li>2-week delivery</li>
-            </ul>
-            <a href="#contact" class="btn btn-gold" style="display:block;text-align:center;"><span>Get Started</span></a>
-        </div>
-        <div class="pc feat reveal d1">
-            <div class="feat-tag">Most Popular</div>
-            <div class="pc-tier">Authority</div>
-            <div class="pc-amt">$2,000</div>
-            <div class="pc-sub">One-time · Your business, fully equipped</div>
-            <ul class="pc-list">
-                <li>Everything in Presence</li>
-                <li>Advanced SEO foundation</li>
-                <li>Google Analytics setup</li>
-                <li>Online booking system</li>
-                <li>Social media integration</li>
-                <li>First month of updates included</li>
-            </ul>
-            <a href="#contact" class="btn btn-gold" style="display:block;text-align:center;"><span>Get Started</span></a>
-        </div>
-        <div class="pc reveal d2">
             <div class="pc-tier">Growth</div>
+            <div class="pc-starting">Starting at</div>
             <div class="pc-amt">$500</div>
             <div class="pc-sub">Per month · Your business, always growing</div>
             <ul class="pc-list">
@@ -596,13 +438,157 @@
             </ul>
             <a href="#contact" class="btn btn-gold" style="display:block;text-align:center;"><span>Get Started</span></a>
         </div>
+        <div class="pc reveal d1">
+            <div class="pc-tier">Presence</div>
+            <div class="pc-starting">Starting at</div>
+            <div class="pc-amt">$1,200</div>
+            <div class="pc-sub">One-time · Your business online, fast</div>
+            <ul class="pc-list">
+                <li>Professional custom website</li>
+                <li>Custom content & messaging</li>
+                <li>Mobile-first responsive design</li>
+                <li>Contact & booking form</li>
+                <li>Google Maps integration</li>
+                <li>Dedicated project timeline</li>
+            </ul>
+            <a href="#contact" class="btn btn-gold" style="display:block;text-align:center;"><span>Get Started</span></a>
+        </div>
+        <div class="pc feat reveal d2">
+            <div class="feat-tag">Most Popular</div>
+            <div class="pc-tier">Authority</div>
+            <div class="pc-starting">Starting at</div>
+            <div class="pc-amt">$2,000</div>
+            <div class="pc-sub">One-time · Your business, fully equipped</div>
+            <ul class="pc-list">
+                <li>Everything in Presence</li>
+                <li>Advanced SEO foundation</li>
+                <li>Google Analytics setup</li>
+                <li>Online booking system</li>
+                <li>Social media integration</li>
+                <li>First month of updates included</li>
+            </ul>
+            <a href="#contact" class="btn btn-gold" style="display:block;text-align:center;"><span>Get Started</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- BUILT FOR AUSTIN — portfolio section -->
+<section class="sec-alt" id="work" style="border-top:2px solid var(--gold);">
+    <div class="eyebrow reveal"><div class="ey-ln"></div>Built for Austin</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:1rem;">
+        <h2 class="sec-title reveal">Before we pitch anyone,<br>we build them a <em>free demo.</em></h2>
+        <p class="reveal" style="color:var(--w55);font-size:0.92rem;line-height:1.85;padding-bottom:0.4rem;">Every business you see below received a fully custom website before we ever made contact. That's not a sales tactic — it's how we prove the work speaks for itself. These are three recent examples.</p>
+    </div>
+
+    <!-- Demo cards -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--gold-bd);border:1px solid var(--gold-bd);margin-top:4rem;">
+
+        <!-- Llano & Lime -->
+        <div class="demo-card reveal" style="background:var(--s2);padding:2.8rem;display:flex;flex-direction:column;gap:1.8rem;transition:background 0.3s;cursor:default;" onmouseenter="this.style.background='var(--s3)'" onmouseleave="this.style.background='var(--s2)'">
+            <div>
+                <div style="font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Restaurant · Food & Beverage</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin-bottom:0.5rem;">Llano <span style="color:var(--gold);">&</span> Lime</div>
+                <div style="font-size:0.78rem;color:var(--w55);line-height:1.7;">Modern Tex-Mex on South Congress. Full menu presentation, reservation form, events section, and editorial typography that matches how good the food actually is.</div>
+            </div>
+            <!-- Visual preview — editorial style thumbnail -->
+            <div style="aspect-ratio:16/9;background:linear-gradient(135deg,#0f0d0b 0%,#2a3d2e 100%);position:relative;overflow:hidden;border:1px solid rgba(201,168,76,0.1);">
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;">
+                    <div style="font-family:'Georgia',serif;font-size:2.2rem;font-weight:700;color:rgba(240,235,224,0.9);line-height:0.95;letter-spacing:0.02em;">LLANO<br><span style="color:#d4a853;">&</span> LIME</div>
+                    <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(196,82,42,0.8);margin-top:0.4rem;">South Congress · Austin, TX</div>
+                </div>
+                <div style="position:absolute;top:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,#c4522a22,#2a3d2e44);"></div>
+                <div style="position:absolute;top:50%;right:15%;transform:translateY(-50%);width:60px;height:60px;border-radius:50%;border:1px solid rgba(212,168,83,0.2);"></div>
+                <div style="position:absolute;top:50%;right:15%;transform:translateY(-50%) translate(8px,8px);width:44px;height:44px;border-radius:50%;border:1px solid rgba(212,168,83,0.1);"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Menu</span>
+                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Reservations</span>
+                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Events</span>
+                </div>
+                <a href="llanolime.html" target="_blank" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;white-space:nowrap;transition:border-color 0.3s;" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.3)'">View Demo →</a>
+            </div>
+        </div>
+
+        <!-- Solis Wellness -->
+        <div class="demo-card reveal" style="background:var(--s2);padding:2.8rem;display:flex;flex-direction:column;gap:1.8rem;transition:background 0.3s;cursor:default;" onmouseenter="this.style.background='var(--s3)'" onmouseleave="this.style.background='var(--s2)'">
+            <div>
+                <div style="font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Wellness · Med Spa</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin-bottom:0.5rem;">Solis <em style="font-weight:300;color:var(--gold);">Wellness Studio</em></div>
+                <div style="font-size:0.78rem;color:var(--w55);line-height:1.7;">A spa that needed to feel as calm as the experience inside. Dark luxury aesthetic, treatment list, booking form, and membership pricing — all centered around slowing the visitor down.</div>
+            </div>
+            <!-- Visual preview — spa minimal thumbnail -->
+            <div style="aspect-ratio:16/9;background:linear-gradient(160deg,#141820 0%,#1d2333 100%);position:relative;overflow:hidden;border:1px solid rgba(201,168,76,0.1);">
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;border:1px solid rgba(196,180,154,0.15);"></div>
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;border:1px solid rgba(196,180,154,0.1);"></div>
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:rgba(196,180,154,0.08);"></div>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;text-align:center;">
+                    <div style="font-family:'Georgia',serif;font-size:1rem;font-weight:300;color:rgba(242,237,230,0.7);letter-spacing:0.35em;text-transform:uppercase;">SOLIS</div>
+                    <div style="font-family:'Georgia',serif;font-size:0.7rem;font-style:italic;color:rgba(196,180,154,0.5);letter-spacing:0.15em;margin-top:0.15rem;">Wellness Studio</div>
+                </div>
+                <div style="position:absolute;top:1rem;right:1rem;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(196,180,154,0.25);">Austin, TX · Est. 2020</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Treatments</span>
+                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Booking</span>
+                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Membership</span>
+                </div>
+                <a href="soliswellness.html" target="_blank" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;white-space:nowrap;transition:border-color 0.3s;" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.3)'">View Demo →</a>
+            </div>
+        </div>
+
+        <!-- Ridgeline -->
+        <div class="demo-card reveal" style="background:var(--s2);padding:2.8rem;display:flex;flex-direction:column;gap:1.8rem;transition:background 0.3s;cursor:default;" onmouseenter="this.style.background='var(--s3)'" onmouseleave="this.style.background='var(--s2)'">
+            <div>
+                <div style="font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Home Services · Residential</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin-bottom:0.5rem;">Ridgeline <em style="font-weight:300;color:var(--gold);">Home Services</em></div>
+                <div style="font-size:0.78rem;color:var(--w55);line-height:1.7;">A contractor site built on trust, not flash. Services grid, process steps, testimonials, and a quote form that converts. Light theme to stand out in a category full of dark, generic sites.</div>
+            </div>
+            <!-- Visual preview — industrial light thumbnail -->
+            <div style="aspect-ratio:16/9;background:linear-gradient(160deg,#e8e4dc 0%,#d4cfc5 100%);position:relative;overflow:hidden;border:1px solid rgba(201,168,76,0.1);">
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;">
+                    <div style="font-family:'Georgia',serif;font-size:1.4rem;font-weight:700;color:#1c1f24;line-height:1;">RIDGELINE</div>
+                    <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#bf4b1e;margin-top:0.25rem;">Home Services · Austin, TX</div>
+                </div>
+                <!-- Diagonal accent -->
+                <div style="position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 120px 80px 0;border-color:transparent #bf4b1e22 transparent transparent;"></div>
+                <!-- Fake checklist items -->
+                <div style="position:absolute;top:1.2rem;left:1.2rem;display:flex;flex-direction:column;gap:0.3rem;">
+                    <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.5rem;color:rgba(28,31,36,0.45);letter-spacing:0.08em;">
+                        <div style="width:10px;height:10px;border-radius:50%;border:1px solid #bf4b1e55;display:flex;align-items:center;justify-content:center;font-size:0.45rem;color:#bf4b1e;">✓</div>Licensed & Insured
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.5rem;color:rgba(28,31,36,0.45);letter-spacing:0.08em;">
+                        <div style="width:10px;height:10px;border-radius:50%;border:1px solid #bf4b1e55;display:flex;align-items:center;justify-content:center;font-size:0.45rem;color:#bf4b1e;">✓</div>Upfront Pricing
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.5rem;color:rgba(28,31,36,0.45);letter-spacing:0.08em;">
+                        <div style="width:10px;height:10px;border-radius:50%;border:1px solid #bf4b1e55;display:flex;align-items:center;justify-content:center;font-size:0.45rem;color:#bf4b1e;">✓</div>Same-Week Scheduling
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Services</span>
+                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Reviews</span>
+                    <span style="font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w25);border:1px solid var(--w10);padding:0.2rem 0.6rem;">Quote Form</span>
+                </div>
+                <a href="ridgeline.html" target="_blank" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:1px;white-space:nowrap;transition:border-color 0.3s;" onmouseenter="this.style.borderColor='var(--gold)'" onmouseleave="this.style.borderColor='rgba(201,168,76,0.3)'">View Demo →</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Section footer note -->
+    <div class="reveal" style="margin-top:3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--w10);padding-top:2rem;">
+        <p style="font-size:0.8rem;color:var(--w25);font-style:italic;max-width:560px;">These are demo builds — fictional businesses created to show range across industries and design styles. Your demo will be built specifically for your business, your neighborhood, and your customers.</p>
+        <a href="#contact" class="btn btn-gold" style="flex-shrink:0;"><span>Get Your Free Demo →</span></a>
     </div>
 </section>
 
 <!-- CTA BAND — s1 -->
 <section class="sec-sm-alt cta-band">
     <h2 class="reveal">Your business is already great.<br><em>Let's make sure the world knows it.</em></h2>
-    <p class="reveal">We build a free custom demo for your business. No commitment, no credit card. If you love it, we talk next steps.</p>
+    <p class="reveal">We'll build a free custom demo for your business. No commitment, no credit card. If you love it, we'll talk next steps.</p>
     <a href="#contact" class="btn btn-gold reveal"><span>Get Your Free Demo Today</span></a>
 </section>
 
@@ -621,11 +607,15 @@
             <form class="c-form" action="https://formspree.io/f/mykddldk" method="POST">
                 <div class="c-row">
                     <div class="c-field"><label class="c-lbl">Your Name</label><input class="c-in" type="text" name="name" placeholder="Jane Smith" required></div>
-                    <div class="c-field"><label class="c-lbl">Business Name</label><input class="c-in" type="text" name="name" placeholder="Smith's Landscaping" required></div>
+                    <div class="c-field"><label class="c-lbl">Business Name</label><input class="c-in" type="text" name="business_name" placeholder="Smith's Landscaping" required></div>
                 </div>
                 <div class="c-row">
-                    <div class="c-field"><label class="c-lbl">Email Address</label><input class="c-in" type="email" name="name" placeholder="jane@yourbusiness.com" required></div>
+                    <div class="c-field"><label class="c-lbl">Email Address</label><input class="c-in" type="email" name="email" placeholder="jane@yourbusiness.com" required></div>
                     <div class="c-field"><label class="c-lbl">Phone Number</label><input class="c-in" type="tel" name="phone" placeholder="(512) 555-0100"></div>
+                </div>
+                <div class="c-field">
+                    <label class="c-lbl">Location</label>
+                    <input class="c-in" type="text" name="location" placeholder="Austin, Round Rock, Leander...">
                 </div>
                 <div class="c-field">
                     <label class="c-lbl">Industry</label>
@@ -698,48 +688,6 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>{
     if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
 }),{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-/* LIVE DEMO */
-async function runDemo(){
-    const name=document.getElementById('dName').value.trim();
-    const type=document.getElementById('dType').value.trim();
-    if(!name||!type){alert('Please enter a business name and type.');return;}
-    const btn=document.getElementById('dBtn'),out=document.getElementById('dOut'),body=document.getElementById('dBody');
-    btn.disabled=true;btn.textContent='Generating...';
-    out.classList.add('show');
-    body.innerHTML='<div class="demo-loader"><div class="spin"></div>Writing your copy...</div>';
-    try{
-        const res=await fetch('https://api.anthropic.com/v1/messages',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-                model:'claude-sonnet-4-20250514',
-                max_tokens:1000,
-                messages:[{role:'user',content:`You are a professional web copywriter. Write compelling website copy for this local business:
-
-Business: ${name}
-Type: ${type}
-
-Format exactly like this:
-HEADLINE: [one powerful headline, max 10 words]
-SUBHEADLINE: [one compelling sentence about what makes them special]
-CTA: [3-4 word button text]
-ABOUT: [2 warm, specific sentences about this business]
-SERVICE 1: [Name] — [one sentence]
-SERVICE 2: [Name] — [one sentence]
-SERVICE 3: [Name] — [one sentence]
-
-Be specific to the business type. Sound human, not generic.`}]
-            })
-        });
-        const data=await res.json();
-        body.textContent=data.content?.[0]?.text||'Unable to generate. Please try again.';
-    }catch{
-        body.textContent=`HEADLINE: "${name} — ${type} Austin Trusts"\nSUBHEADLINE: Serving the Austin community with expertise, care, and results that speak for themselves.\nCTA: Get In Touch Today\nABOUT: ${name} brings professional ${type} services to the Austin area with a genuine commitment to quality. Every client is treated with the same care and attention. Because your success is our success.\nSERVICE 1: Expert Consultation — Personalized advice built around your specific needs.\nSERVICE 2: Professional Execution — Delivered with precision, on time, every time.\nSERVICE 3: Ongoing Partnership — We don't disappear after the job is done.\n\n(Preview mode — full generation active on deployed site)`;
-    }
-    btn.disabled=false;btn.textContent='Generate →';
-}
-
 </script>
 </body>
 </html>

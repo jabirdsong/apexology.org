@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Llano & Lime | Modern Tex-Mex · Austin, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --black:#0f0d0b;--clay:#c4522a;--gold:#d4a853;
+  --green:#2a3d2e;--cream:#f0ebe0;--warm:#e8dfc8;
+  --ink55:rgba(15,13,11,0.55);--ink20:rgba(15,13,11,0.2);
+}
+body{background:var(--cream);color:var(--black);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;transition:all 0.4s;}
+nav.dark{background:rgba(15,13,11,0.92);backdrop-filter:blur(8px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.08em;color:var(--black);text-decoration:none;transition:color 0.3s;}
+nav.dark .nav-logo{color:var(--cream);}
+.nav-right{display:flex;gap:2rem;align-items:center;}
+.nav-right a{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:var(--black);transition:color 0.3s;}
+nav.dark .nav-right a{color:rgba(240,235,224,0.5);}
+nav.dark .nav-right a:hover{color:var(--cream);}
+.nav-cta{background:var(--clay)!important;color:var(--cream)!important;padding:0.45rem 1.2rem;}
+
+/* HERO - full bleed big type */
+.hero{min-height:100vh;background:var(--black);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:5rem;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(196,82,42,0.18) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 20% 80%,rgba(42,61,46,0.25) 0%,transparent 55%);}
+.hero-bg-word{position:absolute;top:-0.15em;left:-0.04em;font-family:'Bebas Neue',sans-serif;font-size:clamp(18rem,32vw,36rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(240,235,224,0.06);pointer-events:none;white-space:nowrap;user-select:none;}
+.hero-bar{position:absolute;top:0;right:12%;width:3px;height:100%;background:var(--clay);transform:skewX(-3deg);opacity:0.6;}
+.hero-bar2{right:calc(12% + 18px);width:1px;opacity:0.25;background:var(--gold);position:absolute;top:0;height:100%;}
+.hero-content{position:relative;z-index:2;padding:0 2.5rem;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:3rem;}
+.hero-location{font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--clay);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.7s ease forwards 0.3s;}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,13vw,13rem);line-height:0.9;color:var(--cream);opacity:0;animation:fadeUp 0.8s ease forwards 0.5s;}
+.hero-h1 .line2{color:var(--gold);display:block;}
+.hero-sub{margin-top:2rem;font-family:'Lora',serif;font-style:italic;font-size:1.05rem;color:rgba(240,235,224,0.55);max-width:420px;line-height:1.7;opacity:0;animation:fadeUp 0.8s ease forwards 0.75s;}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;gap:2rem;padding-bottom:0.5rem;opacity:0;animation:fadeUp 0.8s ease forwards 0.9s;}
+.hero-badge{writing-mode:vertical-rl;font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:rgba(240,235,224,0.3);}
+.hero-actions{display:flex;flex-direction:column;gap:0.8rem;align-items:flex-end;}
+.btn-hero{background:var(--clay);color:var(--cream);text-decoration:none;display:inline-block;padding:1rem 2.2rem;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:500;transition:background 0.3s,transform 0.3s;}
+.btn-hero:hover{background:#a03d1a;transform:translateX(-4px);}
+.btn-ghost-hero{color:rgba(240,235,224,0.45);text-decoration:none;font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;border-bottom:1px solid rgba(240,235,224,0.15);padding-bottom:2px;transition:color 0.3s;}
+.btn-ghost-hero:hover{color:var(--cream);}
+.hero-strip{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--clay) 0%,var(--gold) 50%,var(--green) 100%);}
+
+
+
+/* EDITORIAL SPLIT */
+.editorial{display:grid;grid-template-columns:1.2fr 0.8fr;min-height:80vh;}
+.ed-left{background:var(--warm);padding:7rem 5rem 5rem 2.5rem;position:relative;overflow:hidden;}
+.ed-issue{font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:0.3em;color:var(--clay);margin-bottom:0.5rem;}
+.ed-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,7rem);line-height:0.92;color:var(--black);}
+.ed-heading em{font-family:'Lora',serif;font-style:italic;font-size:0.75em;color:var(--clay);}
+.ed-body{margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.ed-body p{font-size:0.9rem;color:var(--ink55);line-height:1.85;}
+.ed-stat-row{margin-top:4rem;display:flex;gap:3rem;}
+.ed-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--clay);line-height:1;}
+.ed-lbl{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink55);}
+.ed-deco{position:absolute;bottom:-1rem;right:-0.5rem;font-family:'Bebas Neue',sans-serif;font-size:18rem;line-height:1;color:transparent;-webkit-text-stroke:1px var(--ink20);pointer-events:none;user-select:none;}
+.ed-right{background:var(--green);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 2.5rem;}
+.ed-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 30%,rgba(196,82,42,0.15) 0%,transparent 60%),linear-gradient(180deg,var(--green) 0%,#1a2b1e 100%);}
+.ed-dish-label{position:relative;z-index:2;font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.ed-dish-title{position:relative;z-index:2;font-family:'Lora',serif;font-size:2rem;font-style:italic;color:var(--cream);line-height:1.2;}
+.ed-dish-desc{position:relative;z-index:2;margin-top:0.8rem;font-size:0.8rem;color:rgba(240,235,224,0.5);line-height:1.6;}
+.ed-circles{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:260px;height:260px;border-radius:50%;border:1px solid rgba(240,235,224,0.06);display:flex;align-items:center;justify-content:center;}
+.ed-circles::before{content:'';position:absolute;inset:30px;border-radius:50%;border:1px solid rgba(240,235,224,0.04);}
+.ed-circles-text{font-family:'Lora',serif;font-style:italic;font-size:0.75rem;color:rgba(240,235,224,0.12);text-align:center;line-height:2.2;letter-spacing:0.08em;}
+
+/* MENU section */
+.menu-section{padding:6rem 2.5rem;background:var(--black);}
+.menu-header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(240,235,224,0.1);padding-bottom:1.5rem;margin-bottom:4rem;}
+.menu-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,6rem);color:var(--cream);letter-spacing:0.04em;}
+.menu-title em{color:var(--gold);}
+.menu-note{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,235,224,0.25);}
+.menu-cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;}
+.menu-featured{border-right:1px solid rgba(240,235,224,0.08);padding-right:3rem;}
+.feat-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--clay);margin-bottom:1rem;}
+.feat-name{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;color:var(--cream);}
+.feat-detail{font-family:'Lora',serif;font-style:italic;font-size:0.95rem;color:var(--gold);margin:0.5rem 0 1.5rem;}
+.feat-desc{font-size:0.85rem;color:rgba(240,235,224,0.5);line-height:1.8;border-left:2px solid var(--clay);padding-left:1rem;}
+.feat-price{margin-top:2rem;font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--clay);}
+.menu-col-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.15em;color:rgba(240,235,224,0.3);border-bottom:1px solid rgba(240,235,224,0.08);padding-bottom:0.8rem;margin-bottom:2rem;}
+.mi{margin-bottom:2rem;}
+.mi-name{font-family:'Lora',serif;font-size:1.05rem;color:var(--cream);display:flex;justify-content:space-between;align-items:baseline;}
+.mi-price{color:var(--gold);font-style:italic;font-size:0.9rem;}
+.mi-desc{font-size:0.78rem;color:rgba(240,235,224,0.4);line-height:1.6;margin-top:0.3rem;}
+.mi-tag{display:inline-block;margin-top:0.5rem;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--clay);border:1px solid rgba(196,82,42,0.3);padding:0.15rem 0.5rem;}
+
+/* HOURS */
+.hours{background:var(--clay);display:grid;grid-template-columns:repeat(5,1fr);}
+.hr-item{padding:2rem 1.5rem;border-right:1px solid rgba(240,235,224,0.15);text-align:center;}
+.hr-item:last-child{border-right:none;}
+.hr-day{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(240,235,224,0.5);margin-bottom:0.4rem;}
+.hr-time{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--cream);letter-spacing:0.05em;}
+.hr-closed{color:rgba(240,235,224,0.35);}
+
+/* EVENTS */
+.events{padding:6rem 2.5rem;background:var(--warm);}
+.ev-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--clay);margin-bottom:0.5rem;}
+.ev-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);color:var(--black);margin-bottom:4rem;}
+.ev-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;align-items:start;}
+.ev-card{position:relative;}
+.ev-card:nth-child(2){margin-top:4rem;}
+.ev-card:nth-child(3){margin-top:2rem;}
+.ev-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;color:transparent;-webkit-text-stroke:1px var(--ink20);position:absolute;top:-1rem;right:1rem;}
+.ev-inner{padding:2.5rem 2rem;position:relative;z-index:1;}
+.ev-card:nth-child(1) .ev-inner{background:var(--green);}
+.ev-card:nth-child(2) .ev-inner{background:var(--black);}
+.ev-card:nth-child(3) .ev-inner{background:var(--black);}
+.ev-tag{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.ev-name{font-family:'Lora',serif;font-size:1.3rem;font-style:italic;color:var(--cream);margin-bottom:0.8rem;}
+.ev-desc{font-size:0.82rem;color:rgba(240,235,224,0.5);line-height:1.7;}
+.ev-cta{display:inline-block;margin-top:1.5rem;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--clay);text-decoration:none;border-bottom:1px solid rgba(196,82,42,0.3);padding-bottom:2px;transition:border-color 0.3s;}
+.ev-cta:hover{border-color:var(--clay);}
+
+/* CONTACT */
+.contact{background:var(--black);display:grid;grid-template-columns:1fr 1fr;min-height:60vh;}
+.contact-info{padding:6rem 4rem 6rem 2.5rem;border-right:1px solid rgba(240,235,224,0.08);}
+.contact-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--clay);margin-bottom:1rem;}
+.contact-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,5.5rem);line-height:0.95;color:var(--cream);}
+.contact-heading em{color:var(--gold);display:block;}
+.cd{margin-top:3rem;}
+.cd-row{display:flex;gap:2rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(240,235,224,0.06);}
+.cd-lbl{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,235,224,0.3);width:80px;flex-shrink:0;padding-top:0.15rem;}
+.cd-val{font-family:'Lora',serif;font-size:1.05rem;color:var(--cream);line-height:1.5;}
+.cd-val small{display:block;font-family:'DM Sans',sans-serif;font-size:0.75rem;color:rgba(240,235,224,0.4);font-style:normal;margin-top:0.2rem;}
+.contact-form-wrap{padding:6rem 2.5rem 6rem 4rem;}
+.cf-title{font-family:'Lora',serif;font-style:italic;font-size:1.6rem;color:var(--cream);margin-bottom:2.5rem;}
+.cf{display:flex;flex-direction:column;gap:0;}
+.cf-field{border-bottom:1px solid rgba(240,235,224,0.12);padding:1rem 0;display:flex;flex-direction:column;gap:0.3rem;transition:border-color 0.3s;}
+.cf-field:focus-within{border-color:var(--clay);}
+.cf-lbl{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(240,235,224,0.3);}
+.cf-in{background:none;border:none;outline:none;color:var(--cream);font-family:'Lora',serif;font-style:italic;font-size:1rem;}
+.cf-in::placeholder{color:rgba(240,235,224,0.15);}
+.cf-select{background:none;border:none;outline:none;color:var(--cream);font-family:'Lora',serif;font-style:italic;font-size:1rem;cursor:pointer;width:100%;}
+.cf-select option{background:var(--black);font-style:normal;}
+.cf-inline{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.cf-btn{margin-top:2.5rem;background:var(--clay);border:none;cursor:pointer;padding:1.1rem 2.5rem;width:100%;font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--cream);font-weight:500;transition:background 0.3s;}
+.cf-btn:hover{background:#a03d1a;}
+
+footer{background:var(--green);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;}
+.f-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.08em;color:var(--cream);}
+.f-copy{font-size:0.68rem;color:rgba(240,235,224,0.3);}
+.f-addr{font-size:0.68rem;color:rgba(240,235,224,0.3);font-style:italic;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity 0.7s,transform 0.7s;}
+.rv.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-right a:not(.nav-cta){display:none;}
+  .hero-content{grid-template-columns:1fr;}
+  .editorial,.contact{grid-template-columns:1fr;}
+  .ed-right{min-height:40vh;}
+  .ed-body{grid-template-columns:1fr;}
+  .menu-cols{grid-template-columns:1fr;}
+  .menu-featured{border-right:none;padding-right:0;border-bottom:1px solid rgba(240,235,224,0.08);padding-bottom:2rem;margin-bottom:2rem;}
+  .hours{grid-template-columns:repeat(2,1fr);}
+  .ev-grid{grid-template-columns:1fr;}
+  .ev-card:nth-child(2),.ev-card:nth-child(3){margin-top:0;}
+  footer{flex-direction:column;gap:0.8rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="nav-logo">Llano <span style="color:var(--clay);">&</span> Lime</a>
+  <div class="nav-right">
+    <a href="#menu">Menu</a>
+    <a href="#events">Events</a>
+    <a href="#contact">Find Us</a>
+    <a href="#contact" class="nav-cta">Reserve</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-word">LLANO</div>
+  <div class="hero-bar"></div>
+  <div class="hero-bar2"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-location">South Congress · Austin, Texas</div>
+      <div class="hero-h1">LLANO<span style="color:var(--clay);">&</span><br><span class="line2">LIME</span></div>
+      <p class="hero-sub">The kind of Tex-Mex that makes you forget you had somewhere to be. South Congress, Austin.</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-badge">Modern Tex-Mex · Est. 2021</div>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-hero">Reserve a Table</a>
+        <a href="#menu" class="btn-ghost-hero">View Full Menu</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-strip"></div>
+</section>
+
+
+<section class="editorial">
+  <div class="ed-left rv">
+    <div class="ed-issue">Austin's Tex-Mex — Elevated</div>
+    <h2 class="ed-heading">WHERE<br>TRADITION<br>MEETS<br><em>What's Next</em></h2>
+    <div class="ed-body">
+      <p>Llano & Lime started with a simple idea: Austin deserved a Tex-Mex spot that took the food seriously without taking itself too seriously. We source locally, press our tortillas by hand, and change the menu when something better comes into season.</p>
+      <p>The cocktail list gets the same attention as the kitchen. Come in on a Tuesday and it'll feel like a Friday. That's the point.</p>
+    </div>
+    <div class="ed-stat-row">
+      <div><div class="ed-num">100%</div><div class="ed-lbl">Locally sourced</div></div>
+      <div><div class="ed-num">4.9★</div><div class="ed-lbl">Google rating</div></div>
+      <div><div class="ed-num">2021</div><div class="ed-lbl">Est. Austin</div></div>
+    </div>
+    <div class="ed-deco">3</div>
+  </div>
+  <div class="ed-right rv d2">
+    <div class="ed-circles"><div class="ed-circles-text">brisket<br>verde<br>queso<br>paloma</div></div>
+    <div class="ed-dish-label">Tonight's Feature</div>
+    <div class="ed-dish-title">Smoked Brisket<br>Street Tacos</div>
+    <div class="ed-dish-desc">12hr smoke · pickled red onion · avocado crema · hand-pressed flour tortillas</div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="menu-header rv">
+    <div class="menu-title">OUR <em>MENU</em></div>
+    <div class="menu-note">Kitchen open Tue – Sun</div>
+  </div>
+  <div class="menu-cols">
+    <div class="menu-featured rv">
+      <div class="feat-label">Chef's Selection</div>
+      <div class="feat-name">Brisket<br>Street<br>Tacos</div>
+      <div class="feat-detail">Smoked 12 hours, served on hand-pressed flour</div>
+      <div class="feat-desc">Slow-smoked central Texas brisket, pickled red onion, avocado crema, and a house chile de árbol salsa. Three to an order.</div>
+      <div class="feat-price">$18</div>
+    </div>
+    <div class="rv d1">
+      <div class="menu-col-title">Dinner Service</div>
+      <div class="mi"><div class="mi-name">Verde Enchiladas <span class="mi-price">$16</span></div><div class="mi-desc">Roasted tomatillo, cotija, crema, fresh cilantro</div><span class="mi-tag">Vegetarian available</span></div>
+      <div class="mi"><div class="mi-name">Llano Queso <span class="mi-price">$12</span></div><div class="mi-desc">House blend, roasted green chile, hand-pressed chips</div></div>
+      <div class="mi"><div class="mi-name">Gulf Shrimp Tacos <span class="mi-price">$19</span></div><div class="mi-desc">Baja crema, jalapeño slaw, mango salsa</div><span class="mi-tag">Fan Favorite</span></div>
+      <div class="mi"><div class="mi-name">Fajita Platter <span class="mi-price">$24</span></div><div class="mi-desc">Achiote-marinated skirt steak, peppers, flour + corn</div></div>
+    </div>
+    <div class="rv d2">
+      <div class="menu-col-title">Weekend Brunch</div>
+      <div class="mi"><div class="mi-name">Breakfast Tacos <span class="mi-price">$14</span></div><div class="mi-desc">Eggs, chorizo, queso fresco, pico — three to an order</div><span class="mi-tag">Sat & Sun Only</span></div>
+      <div class="mi"><div class="mi-name">Paloma Margarita <span class="mi-price">$13</span></div><div class="mi-desc">Reposado tequila, fresh grapefruit, lime, tajín rim</div></div>
+      <div class="mi"><div class="mi-name">Huevos Rancheros <span class="mi-price">$15</span></div><div class="mi-desc">Crispy tortilla, black beans, salsa roja, avocado</div></div>
+      <div class="mi"><div class="mi-name">Bottomless Mimosas <span class="mi-price">$22</span></div><div class="mi-desc">Fresh-squeezed OJ, rotating seasonal juices</div><span class="mi-tag">90 min · Table Service</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="hours">
+  <div class="hr-item"><div class="hr-day">Monday</div><div class="hr-time hr-closed">Closed</div></div>
+  <div class="hr-item"><div class="hr-day">Tue – Thu</div><div class="hr-time">5 – 10pm</div></div>
+  <div class="hr-item"><div class="hr-day">Friday</div><div class="hr-time">11am – 11pm</div></div>
+  <div class="hr-item"><div class="hr-day">Saturday</div><div class="hr-time">10am – 11pm</div></div>
+  <div class="hr-item"><div class="hr-day">Sunday</div><div class="hr-time">10am – 9pm</div></div>
+</div>
+
+<section class="events" id="events">
+  <div class="ev-label rv">Private Events & More</div>
+  <div class="ev-title rv">THREE WAYS<br>TO GATHER</div>
+  <div class="ev-grid">
+    <div class="ev-card rv"><div class="ev-num">01</div><div class="ev-inner"><div class="ev-tag">Dinner Service</div><div class="ev-name">A lively evening, every night</div><div class="ev-desc">Full menu, rotating cocktail specials, and the kind of room where two hours disappears. Walk-ins welcome when we have space.</div><a href="#contact" class="ev-cta">Reserve a table →</a></div></div>
+    <div class="ev-card rv d1"><div class="ev-num">02</div><div class="ev-inner"><div class="ev-tag">Weekend Brunch · Sat & Sun</div><div class="ev-name">The brunch that turns into lunch</div><div class="ev-desc">Breakfast tacos, bottomless mimosas, and a South Congress Saturday morning you genuinely won't want to leave. We're open until 3.</div><a href="#contact" class="ev-cta">View brunch menu →</a></div></div>
+    <div class="ev-card rv d2"><div class="ev-num">03</div><div class="ev-inner"><div class="ev-tag">Private Events · Groups 15–80</div><div class="ev-name">Your event, our space</div><div class="ev-desc">Custom menus, dedicated service, and a room that does the work for you. We've hosted birthdays, rehearsal dinners, and a few things we won't name.</div><a href="#contact" class="ev-cta">Inquire about events →</a></div></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-info rv">
+    <div class="contact-label">Find Us · Reserve · Contact</div>
+    <div class="contact-heading">COME<br>EAT WITH<br><em>US.</em></div>
+    <div class="cd">
+      <div class="cd-row"><div class="cd-lbl">Address</div><div class="cd-val">1842 South Congress Ave<small>Austin, TX 78704</small></div></div>
+      <div class="cd-row"><div class="cd-lbl">Phone</div><div class="cd-val">(512) 555-0183</div></div>
+      <div class="cd-row"><div class="cd-lbl">Hours</div><div class="cd-val">Tue–Thu 5–10pm<small>Fri–Sat 11am–11pm · Sun 10am–9pm</small></div></div>
+    </div>
+  </div>
+  <div class="contact-form-wrap rv d1">
+    <div class="cf-title">Reserve a table or ask a question</div>
+    <form class="cf">
+      <div class="cf-inline">
+        <div class="cf-field"><label class="cf-lbl">Name</label><input class="cf-in" type="text" placeholder="Jane Smith"></div>
+        <div class="cf-field"><label class="cf-lbl">Phone</label><input class="cf-in" type="tel" placeholder="(512) 555-0100"></div>
+      </div>
+      <div class="cf-inline">
+        <div class="cf-field"><label class="cf-lbl">Date</label><input class="cf-in" type="date"></div>
+        <div class="cf-field"><label class="cf-lbl">Party Size</label><select class="cf-select"><option value="">Select…</option><option>1–2</option><option>3–4</option><option>5–6</option><option>7+</option></select></div>
+      </div>
+      <div class="cf-field"><label class="cf-lbl">Notes</label><input class="cf-in" type="text" placeholder="Birthdays, dietary needs, questions…"></div>
+      <button type="submit" class="cf-btn">Send Request →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">LLANO <span style="color:var(--gold);">&</span> LIME</div>
+  <div class="f-copy">© 2026 Llano & Lime · All rights reserved</div>
+  <div class="f-addr">1842 S Congress Ave · Austin, TX</div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('dark',scrollY>80));
+const obs=new IntersectionObserver(els=>els.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+document.querySelector('.cf').addEventListener('submit',e=>{e.preventDefault();alert("Thanks! We'll confirm your reservation shortly.");e.target.reset();});
+</script>
+</body>
+</html>

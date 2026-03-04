@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridgeline Home Services | Austin, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --white:  #f8f5f0;
+  --off:    #ede9e2;
+  --sand:   #d9d2c5;
+  --charcoal:#1c1f24;
+  --char55: rgba(28,31,36,0.55);
+  --char20: rgba(28,31,36,0.2);
+  --char08: rgba(28,31,36,0.08);
+  --rust:   #bf4b1e;
+  --rust-lt:#d45d2c;
+  --rust-dk:#9a3a14;
+  --pine:   #2b3d2e;
+}
+body{background:var(--white);color:var(--charcoal);font-family:'IBM Plex Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 3rem;
+  background:var(--white);
+  border-bottom:2px solid var(--charcoal);
+  transition:all 0.3s;
+}
+nav.lifted{box-shadow:0 4px 24px rgba(28,31,36,0.1);}
+.nav-logo{display:flex;flex-direction:column;gap:0;text-decoration:none;}
+.nav-logo-main{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;letter-spacing:0.01em;color:var(--charcoal);line-height:1;}
+.nav-logo-sub{font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rust);margin-top:2px;}
+.nav-links{display:flex;gap:0;align-items:center;}
+.nav-links a{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:400;text-decoration:none;color:var(--char55);padding:0.5rem 1.2rem;border-left:1px solid var(--char08);transition:color 0.3s;}
+.nav-links a:hover{color:var(--charcoal);}
+.nav-links a:first-child{border-left:none;}
+.nav-cta{background:var(--rust)!important;color:var(--white)!important;font-weight:500!important;}
+.nav-cta:hover{background:var(--rust-dk)!important;color:var(--white)!important;}
+.nav-phone{font-family:'Fraunces',serif;font-size:0.85rem;font-weight:600;color:var(--charcoal);margin-right:1.5rem;}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding-top:64px; /* nav height */
+  position:relative;
+  overflow:hidden;
+}
+
+/* Left side — white with big type */
+.hero-left{
+  background:var(--white);
+  padding:5rem 3rem 5rem 3rem;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:2;
+}
+.hero-since{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--rust);margin-bottom:2.5rem;
+  opacity:0;animation:up 0.7s ease forwards 0.2s;
+}
+.since-line{width:20px;height:2px;background:var(--rust);}
+
+.hero-h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(3.5rem,5.5vw,5.8rem);
+  font-weight:700;line-height:1.0;
+  color:var(--charcoal);
+  opacity:0;animation:up 0.8s ease forwards 0.4s;
+}
+.hero-h1 em{
+  font-style:italic;font-weight:400;
+  color:var(--rust);display:block;
+}
+
+.hero-sub{
+  margin-top:2rem;
+  font-size:1rem;color:var(--char55);
+  max-width:420px;line-height:1.75;
+  opacity:0;animation:up 0.8s ease forwards 0.65s;
+}
+
+.hero-actions{
+  margin-top:3rem;display:flex;gap:0;
+  opacity:0;animation:up 0.8s ease forwards 0.85s;
+}
+.btn-main{
+  background:var(--charcoal);color:var(--white);
+  text-decoration:none;display:inline-block;
+  padding:1rem 2rem;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  border:2px solid var(--charcoal);
+  transition:all 0.3s;
+}
+.btn-main:hover{background:var(--rust);border-color:var(--rust);}
+.btn-outline{
+  background:none;color:var(--charcoal);
+  text-decoration:none;display:inline-block;
+  padding:1rem 2rem;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:0.72rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;
+  border:2px solid var(--charcoal);border-left:none;
+  transition:all 0.3s;
+}
+.btn-outline:hover{background:var(--off);}
+
+/* Trust badges */
+.hero-trust{
+  margin-top:3.5rem;display:flex;gap:2.5rem;
+  opacity:0;animation:up 0.8s ease forwards 1.05s;
+}
+.trust-item{display:flex;flex-direction:column;gap:0.2rem;}
+.trust-num{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--rust);line-height:1;}
+.trust-lbl{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--char55);}
+
+/* Right side — charcoal panel with diagonal cut */
+.hero-right{
+  background:var(--charcoal);
+  position:relative;overflow:hidden;
+  clip-path:polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:4rem 3rem 4rem 5rem;
+}
+.hero-right::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 60% 30%,rgba(191,75,30,0.12) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 70% at 30% 80%,rgba(43,61,46,0.15) 0%,transparent 55%);
+}
+/* Big background service word */
+.hero-right-word{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(10rem,16vw,18rem);
+  line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(248,245,240,0.05);
+  pointer-events:none;white-space:nowrap;user-select:none;
+  letter-spacing:-0.02em;
+}
+.hero-checklist{position:relative;z-index:2;}
+.hc-title{
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:rgba(248,245,240,0.4);margin-bottom:1.5rem;
+}
+.hc-item{
+  display:flex;align-items:center;gap:1rem;
+  padding:0.9rem 0;
+  border-bottom:1px solid rgba(248,245,240,0.07);
+  color:rgba(248,245,240,0.75);
+  font-size:0.88rem;
+}
+.hc-item:last-child{border-bottom:none;}
+.hc-check{
+  width:22px;height:22px;flex-shrink:0;
+  border:1px solid var(--rust);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.hc-check::before{content:'✓';font-size:0.65rem;color:var(--rust);}
+.hc-item strong{color:var(--white);font-weight:500;}
+
+/* ===== DIAGONAL DIVIDER ===== */
+.divider-slash{
+  height:60px;background:var(--charcoal);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 40%);
+}
+
+/* ===== SERVICES BENTO GRID ===== */
+.services{padding:5rem 3rem;background:var(--white);}
+.svc-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;}
+.svc-eyebrow{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--rust);margin-bottom:0.5rem;}
+.svc-title{font-family:'Fraunces',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:700;line-height:1.05;}
+.svc-title em{font-style:italic;font-weight:400;color:var(--rust);}
+.svc-sub{max-width:300px;font-size:0.82rem;color:var(--char55);line-height:1.7;text-align:right;}
+
+/* Asymmetric bento grid — very different from card grids */
+.bento{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:3px;
+  background:var(--char08);
+  border:1px solid var(--char08);
+}
+.bt{background:var(--white);padding:2.5rem;position:relative;overflow:hidden;transition:background 0.3s;}
+.bt:hover{background:var(--off);}
+.bt::after{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--rust);transition:width 0.4s;}
+.bt:hover::after{width:100%;}
+
+/* Featured tile — spans 2 rows */
+.bt-featured{
+  grid-row:span 2;
+  background:var(--charcoal);
+  padding:3rem;
+}
+.bt-featured:hover{background:#22262c;}
+.bt-featured::after{background:var(--rust);}
+.bt-featured-icon{font-size:3rem;margin-bottom:2rem;display:block;opacity:0.8;}
+.bt-featured-label{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--rust);margin-bottom:1rem;}
+.bt-featured-name{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:var(--white);line-height:1.1;margin-bottom:1rem;}
+.bt-featured-name em{font-style:italic;font-weight:400;display:block;}
+.bt-featured-desc{font-size:0.85rem;color:rgba(248,245,240,0.55);line-height:1.75;margin-bottom:2rem;}
+.bt-featured-list{list-style:none;}
+.bt-featured-list li{font-size:0.8rem;color:rgba(248,245,240,0.65);padding:0.5rem 0;border-bottom:1px solid rgba(248,245,240,0.07);display:flex;gap:0.8rem;}
+.bt-featured-list li::before{content:'—';color:var(--rust);flex-shrink:0;}
+
+.bt-icon{font-size:1.8rem;display:block;margin-bottom:1.2rem;}
+.bt-name{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;margin-bottom:0.5rem;}
+.bt-desc{font-size:0.8rem;color:var(--char55);line-height:1.65;}
+.bt-tag{
+  display:inline-block;margin-top:1rem;
+  font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--rust);font-weight:500;
+}
+
+/* Wide bottom tile */
+.bt-wide{
+  grid-column:span 2;
+  background:var(--pine);
+  padding:2.5rem;
+}
+.bt-wide:hover{background:#334836;}
+.bt-wide-inner{display:flex;justify-content:space-between;align-items:center;gap:2rem;}
+.bt-wide-text{}
+.bt-wide-label{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(248,245,240,0.4);margin-bottom:0.5rem;}
+.bt-wide-name{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;color:var(--white);}
+.bt-wide-desc{font-size:0.8rem;color:rgba(248,245,240,0.5);margin-top:0.4rem;line-height:1.6;}
+.bt-wide-cta{
+  background:var(--rust);color:var(--white);
+  text-decoration:none;white-space:nowrap;
+  padding:0.8rem 1.8rem;
+  font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  flex-shrink:0;transition:background 0.3s;
+}
+.bt-wide-cta:hover{background:var(--rust-dk);}
+
+/* ===== PROCESS ===== */
+.process{padding:5rem 3rem;background:var(--off);}
+.proc-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem;}
+.proc-eyebrow{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--rust);margin-bottom:0.5rem;}
+.proc-title{font-family:'Fraunces',serif;font-size:clamp(2rem,3vw,3rem);font-weight:700;line-height:1.05;}
+.proc-title em{font-style:italic;font-weight:400;color:var(--rust);}
+.proc-note{font-size:0.85rem;color:var(--char55);line-height:1.75;}
+
+.proc-steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border:2px solid var(--charcoal);
+}
+.ps{
+  padding:2.5rem 2rem;
+  border-right:1px solid var(--charcoal);
+  position:relative;
+  transition:background 0.3s;
+}
+.ps:last-child{border-right:none;}
+.ps:hover{background:var(--white);}
+.ps-num{
+  font-family:'Fraunces',serif;
+  font-size:4.5rem;font-weight:700;
+  color:var(--char08);
+  line-height:1;margin-bottom:1.5rem;
+  /* Sits behind text */
+  position:absolute;top:1.2rem;right:1.2rem;
+  user-select:none;
+}
+.ps-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin-bottom:0.6rem;position:relative;z-index:1;}
+.ps-body{font-size:0.8rem;color:var(--char55);line-height:1.7;position:relative;z-index:1;}
+.ps-dot{
+  width:10px;height:10px;background:var(--rust);border-radius:50%;
+  margin-bottom:1.2rem;position:relative;z-index:1;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testi{
+  background:var(--charcoal);
+  padding:5rem 3rem;
+  position:relative;overflow:hidden;
+}
+.testi::before{
+  content:'"';
+  position:absolute;top:-2rem;left:2rem;
+  font-family:'Fraunces',serif;
+  font-size:20rem;line-height:1;
+  color:rgba(248,245,240,0.03);
+  pointer-events:none;
+}
+.testi-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:3.5rem;
+}
+.testi-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--rust);}
+.testi-rating{font-family:'Fraunces',serif;font-size:1rem;color:var(--white);}
+.testi-rating span{color:var(--rust);}
+
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(248,245,240,0.07);}
+.testi-card{
+  background:var(--charcoal);
+  padding:2.5rem;
+  transition:background 0.3s;
+}
+.testi-card:hover{background:#22262c;}
+.testi-stars{color:var(--rust);font-size:0.75rem;margin-bottom:1.2rem;letter-spacing:0.1em;}
+.testi-quote{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:400;
+  font-size:1.05rem;color:var(--white);
+  line-height:1.55;margin-bottom:1.5rem;
+}
+.testi-author{font-size:0.72rem;color:rgba(248,245,240,0.4);letter-spacing:0.08em;}
+.testi-author strong{color:rgba(248,245,240,0.7);font-weight:500;display:block;margin-bottom:0.2rem;}
+.testi-service{
+  display:inline-block;margin-top:1rem;
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--rust);border:1px solid rgba(191,75,30,0.3);padding:0.2rem 0.6rem;
+}
+
+/* ===== AREAS SERVED ===== */
+.areas{
+  padding:4rem 3rem;
+  background:var(--white);
+  border-top:2px solid var(--charcoal);
+  display:grid;grid-template-columns:1fr 3fr;gap:4rem;align-items:center;
+}
+.areas-left{}
+.areas-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--rust);margin-bottom:0.5rem;}
+.areas-title{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;line-height:1.1;}
+.areas-note{font-size:0.78rem;color:var(--char55);margin-top:0.8rem;line-height:1.6;}
+.areas-tags{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.area-tag{
+  padding:0.5rem 1.1rem;
+  border:1px solid var(--char20);
+  font-size:0.72rem;letter-spacing:0.1em;
+  color:var(--char55);
+  transition:all 0.3s;cursor:default;
+}
+.area-tag:hover{border-color:var(--rust);color:var(--rust);}
+.area-tag.active{background:var(--charcoal);color:var(--white);border-color:var(--charcoal);}
+
+/* ===== CONTACT ===== */
+.contact{
+  background:var(--off);
+  border-top:2px solid var(--charcoal);
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.contact-left{
+  background:var(--charcoal);
+  padding:5rem 3rem;
+  position:relative;overflow:hidden;
+}
+.contact-left::before{
+  content:'';position:absolute;
+  bottom:-4rem;right:-4rem;
+  width:280px;height:280px;
+  border:2px solid rgba(191,75,30,0.15);border-radius:50%;
+}
+.contact-left::after{
+  content:'';position:absolute;
+  bottom:-2rem;right:-2rem;
+  width:180px;height:180px;
+  border:2px solid rgba(191,75,30,0.1);border-radius:50%;
+}
+.cl-eyebrow{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--rust);margin-bottom:1rem;}
+.cl-title{font-family:'Fraunces',serif;font-size:clamp(2rem,3vw,3rem);font-weight:700;color:var(--white);line-height:1.05;margin-bottom:1rem;}
+.cl-title em{font-style:italic;font-weight:400;color:var(--rust);}
+.cl-sub{font-size:0.88rem;color:rgba(248,245,240,0.5);line-height:1.75;margin-bottom:3rem;max-width:380px;}
+.cl-detail{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem;}
+.cl-d-icon{width:36px;height:36px;border:1px solid rgba(191,75,30,0.3);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;}
+.cl-d-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(248,245,240,0.3);margin-bottom:0.2rem;}
+.cl-d-val{font-size:0.9rem;color:rgba(248,245,240,0.8);}
+.cl-phone{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:600;color:var(--white);margin-top:2rem;}
+.cl-phone small{display:block;font-family:'IBM Plex Sans',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);font-weight:300;margin-bottom:0.3rem;}
+
+.contact-right{padding:5rem 3rem;}
+.cr-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;margin-bottom:2.5rem;}
+.cf{display:flex;flex-direction:column;gap:0;}
+.cf-group{margin-bottom:1.5rem;}
+.cf-lbl{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--char55);display:block;margin-bottom:0.5rem;}
+.cf-in{
+  width:100%;
+  background:var(--white);
+  border:1px solid var(--char20);
+  border-bottom:2px solid var(--charcoal);
+  outline:none;
+  padding:0.8rem 1rem;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:0.88rem;font-weight:300;
+  color:var(--charcoal);
+  transition:border-color 0.3s;
+}
+.cf-in:focus{border-color:var(--rust);border-bottom-color:var(--rust);}
+.cf-in::placeholder{color:var(--char20);}
+.cf-select{
+  width:100%;
+  background:var(--white);
+  border:1px solid var(--char20);
+  border-bottom:2px solid var(--charcoal);
+  outline:none;
+  padding:0.8rem 1rem;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:0.88rem;font-weight:300;
+  color:var(--charcoal);cursor:pointer;
+}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.cf-btn{
+  width:100%;margin-top:0.5rem;
+  background:var(--charcoal);border:2px solid var(--charcoal);
+  padding:1rem;cursor:pointer;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--white);transition:all 0.3s;
+}
+.cf-btn:hover{background:var(--rust);border-color:var(--rust);}
+.cf-note{font-size:0.7rem;color:var(--char55);margin-top:1rem;line-height:1.5;}
+
+/* FOOTER */
+footer{
+  background:var(--charcoal);
+  border-top:3px solid var(--rust);
+  padding:1.5rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-brand{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--white);}
+.f-brand span{color:var(--rust);}
+.f-copy{font-size:0.65rem;color:rgba(248,245,240,0.3);}
+.f-lic{font-size:0.65rem;color:rgba(248,245,240,0.3);font-style:italic;}
+
+@keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity 0.7s,transform 0.7s;}
+.rv.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links a:not(.nav-cta){display:none;}
+  .nav-phone{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:4rem 1.5rem 3rem;}
+  .services,.process,.testi,.areas,.contact-right{padding:4rem 1.5rem;}
+  .contact-left{padding:4rem 1.5rem;}
+  .contact{grid-template-columns:1fr;}
+  .bento{grid-template-columns:1fr;}
+  .bt-featured{grid-row:span 1;}
+  .bt-wide{grid-column:span 1;}
+  .bt-wide-inner{flex-direction:column;gap:1.5rem;}
+  .proc-steps{grid-template-columns:1fr 1fr;}
+  .ps{border-right:1px solid var(--charcoal);border-bottom:1px solid var(--charcoal);}
+  .testi-grid{grid-template-columns:1fr;}
+  .areas{grid-template-columns:1fr;gap:2rem;}
+  .proc-header,.svc-header{grid-template-columns:1fr;}
+  .svc-sub{text-align:left;}
+  footer{flex-direction:column;gap:0.6rem;text-align:center;padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-main">Ridgeline</span>
+    <span class="nav-logo-sub">Home Services · Austin, TX</span>
+  </a>
+  <span class="nav-phone">(512) 555-0294</span>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#process">How It Works</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-since"><div class="since-line"></div>Serving Austin Since 2009</div>
+    <h1 class="hero-h1">
+      We show up.<br>
+      We do the work.<br>
+      <em>We're done when<br>it's actually done.</em>
+    </h1>
+    <p class="hero-sub">Ridgeline handles the home repairs, maintenance, and renovations that Austin homeowners keep pushing to next month. Licensed, insured, and available when you need us.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-main">Get a Free Quote</a>
+      <a href="#services" class="btn-outline">See Our Services</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <div class="trust-num">15+</div>
+        <div class="trust-lbl">Years in Austin</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">4.9★</div>
+        <div class="trust-lbl">Google Reviews</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">2,400+</div>
+        <div class="trust-lbl">Jobs Completed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-word">BUILD</div>
+    <div class="hero-checklist">
+      <div class="hc-title">What You Get With Ridgeline</div>
+      <div class="hc-item"><div class="hc-check"></div><span><strong>Licensed & insured</strong> — every tech on every job</span></div>
+      <div class="hc-item"><div class="hc-check"></div><span><strong>Upfront pricing</strong> — you see the number before we start</span></div>
+      <div class="hc-item"><div class="hc-check"></div><span><strong>Same-week scheduling</strong> — not next month</span></div>
+      <div class="hc-item"><div class="hc-check"></div><span><strong>Written warranty</strong> — on parts and labor</span></div>
+      <div class="hc-item"><div class="hc-check"></div><span><strong>Clean job site</strong> — we leave it the way we found it, minus the problem</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-slash"></div>
+
+<!-- SERVICES BENTO -->
+<section class="services" id="services">
+  <div class="svc-header rv">
+    <div>
+      <div class="svc-eyebrow">What We Do</div>
+      <h2 class="svc-title">Residential services<br>done <em>right.</em></h2>
+    </div>
+    <p class="svc-sub">Most of our work comes from referrals. We'd like to keep it that way, so we don't cut corners.</p>
+  </div>
+
+  <div class="bento rv">
+    <!-- Featured tile — tall, spans 2 rows -->
+    <div class="bt bt-featured">
+      <span class="bt-featured-icon">🏠</span>
+      <div class="bt-featured-label">Most Requested</div>
+      <div class="bt-featured-name">General Home<br><em>Repair & Maintenance</em></div>
+      <div class="bt-featured-desc">The list of things that need fixing doesn't care about your schedule. We handle the repairs you've been putting off — from leaky fixtures and doors that don't close right, to drywall patches and fence repairs. One call, one crew.</div>
+      <ul class="bt-featured-list">
+        <li>Plumbing repairs & fixture replacement</li>
+        <li>Drywall patching & interior repairs</li>
+        <li>Door, window & hardware fixes</li>
+        <li>Fence & gate repair</li>
+        <li>Gutter cleaning & minor roof work</li>
+      </ul>
+    </div>
+
+    <!-- Regular tiles -->
+    <div class="bt rv d1">
+      <span class="bt-icon">🔨</span>
+      <div class="bt-name">Interior Renovation</div>
+      <div class="bt-desc">Kitchen and bathroom updates, flooring, trim work, and finish carpentry. We scope it honestly and finish on the timeline we quoted.</div>
+      <span class="bt-tag">Free estimate →</span>
+    </div>
+
+    <div class="bt rv d2">
+      <span class="bt-icon">⚡</span>
+      <div class="bt-name">Electrical & Lighting</div>
+      <div class="bt-desc">Panel upgrades, outlet and switch work, ceiling fan installation, and outdoor lighting. All work to Austin code.</div>
+      <span class="bt-tag">Licensed electricians →</span>
+    </div>
+
+    <!-- Wide bottom tile -->
+    <div class="bt bt-wide rv">
+      <div class="bt-wide-inner">
+        <div class="bt-wide-text">
+          <div class="bt-wide-label">Seasonal Service</div>
+          <div class="bt-wide-name">Annual Home Maintenance Plans</div>
+          <div class="bt-wide-desc">One flat rate covers twice-yearly inspections, priority scheduling, and a dedicated contact who knows your property.</div>
+        </div>
+        <a href="#contact" class="bt-wide-cta">Learn More</a>
+      </div>
+    </div>
+
+    <div class="bt rv d1">
+      <span class="bt-icon">🌿</span>
+      <div class="bt-name">Exterior & Landscaping</div>
+      <div class="bt-desc">Deck repairs, painting, pressure washing, drainage fixes, and yard cleanup. Austin summers are hard on homes.</div>
+      <span class="bt-tag">Seasonal availability →</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="proc-header rv">
+    <div>
+      <div class="proc-eyebrow">How It Works</div>
+      <h2 class="proc-title">No surprises.<br><em>No runaround.</em></h2>
+    </div>
+    <p class="proc-note">We've been doing this long enough to know that most homeowners just want an honest answer and someone who shows up when they said they would. That's the entire system.</p>
+  </div>
+  <div class="proc-steps">
+    <div class="ps rv">
+      <div class="ps-num">01</div>
+      <div class="ps-dot"></div>
+      <div class="ps-title">Tell us what's going on</div>
+      <div class="ps-body">Call, text, or fill out the form. Describe the problem as best you can — photos help. We'll respond same day.</div>
+    </div>
+    <div class="ps rv d1">
+      <div class="ps-num">02</div>
+      <div class="ps-dot"></div>
+      <div class="ps-title">We come take a look</div>
+      <div class="ps-body">A Ridgeline tech visits your home, diagnoses the issue, and gives you a written quote before anything gets started.</div>
+    </div>
+    <div class="ps rv d2">
+      <div class="ps-num">03</div>
+      <div class="ps-dot"></div>
+      <div class="ps-title">You approve, we work</div>
+      <div class="ps-body">You sign off on the scope and price. We schedule it, show up on time, and do the work the right way.</div>
+    </div>
+    <div class="ps rv d3">
+      <div class="ps-num">04</div>
+      <div class="ps-dot"></div>
+      <div class="ps-title">Done — with a warranty</div>
+      <div class="ps-body">Every completed job comes with a written warranty on parts and labor. If something's not right, we come back. No charge.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="testi-header rv">
+    <div class="testi-label">What Austin Homeowners Say</div>
+    <div class="testi-rating"><span>★★★★★</span> 4.9 on Google · 340+ reviews</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card rv">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">"Called on a Monday, they were at my house Wednesday. Fixed a leak I'd been ignoring for two months in about two hours. Priced exactly what they quoted."</div>
+      <div class="testi-author"><strong>Marcus T.</strong>South Austin homeowner</div>
+      <div class="testi-service">Plumbing Repair</div>
+    </div>
+    <div class="testi-card rv d1">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">"Third time using Ridgeline. At this point I don't even get other quotes — I know they're going to be fair and I know the work will hold up."</div>
+      <div class="testi-author"><strong>Dana & Roy K.</strong>Cedar Park</div>
+      <div class="testi-service">Deck Repair & Painting</div>
+    </div>
+    <div class="testi-card rv d2">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-quote">"Did a full bathroom remodel. Came in on budget, finished two days ahead of schedule, and cleaned up every day before they left. Remarkable."</div>
+      <div class="testi-author"><strong>Priya N.</strong>North Loop, Austin</div>
+      <div class="testi-service">Bathroom Renovation</div>
+    </div>
+  </div>
+</section>
+
+<!-- AREAS SERVED -->
+<section class="areas rv">
+  <div class="areas-left">
+    <div class="areas-label">Where We Work</div>
+    <div class="areas-title">Austin &<br>Surrounding<br>Areas</div>
+    <div class="areas-note">We serve most of the greater Austin metro. Not sure if we cover your area? Call us — we probably do.</div>
+  </div>
+  <div class="areas-tags">
+    <span class="area-tag active">Austin</span>
+    <span class="area-tag">Leander</span>
+    <span class="area-tag">Round Rock</span>
+    <span class="area-tag">Cedar Park</span>
+    <span class="area-tag">Georgetown</span>
+    <span class="area-tag">Pflugerville</span>
+    <span class="area-tag">Kyle</span>
+    <span class="area-tag">Buda</span>
+    <span class="area-tag">Lakeway</span>
+    <span class="area-tag">Dripping Springs</span>
+    <span class="area-tag">Manor</span>
+    <span class="area-tag">Hutto</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left rv">
+    <div class="cl-eyebrow">Get In Touch</div>
+    <h2 class="cl-title">Ready to get<br><em>it fixed?</em></h2>
+    <p class="cl-sub">Fill out the form and we'll get back to you same day. Prefer to talk? Call or text — a real person answers.</p>
+    <div class="cl-detail">
+      <div class="cl-d-icon">📍</div>
+      <div><div class="cl-d-label">Service Area</div><div class="cl-d-val">Greater Austin Metro</div></div>
+    </div>
+    <div class="cl-detail">
+      <div class="cl-d-icon">🕐</div>
+      <div><div class="cl-d-label">Hours</div><div class="cl-d-val">Mon–Sat 7am–6pm<br><small style="font-size:0.78rem;color:rgba(248,245,240,0.4);">Emergency calls accepted after hours</small></div></div>
+    </div>
+    <div class="cl-phone">
+      <small>Call or Text</small>
+      (512) 555-0294
+    </div>
+  </div>
+
+  <div class="contact-right rv d1">
+    <div class="cr-title">Request a Free Quote</div>
+    <form id="cf">
+      <div class="cf-row">
+        <div class="cf-group"><label class="cf-lbl">Your Name</label><input class="cf-in" type="text" placeholder="Jane Smith"></div>
+        <div class="cf-group"><label class="cf-lbl">Phone</label><input class="cf-in" type="tel" placeholder="(512) 555-0100"></div>
+      </div>
+      <div class="cf-group"><label class="cf-lbl">Address or Neighborhood</label><input class="cf-in" type="text" placeholder="e.g. 78704, South Austin, Cedar Park…"></div>
+      <div class="cf-group">
+        <label class="cf-lbl">Service Needed</label>
+        <select class="cf-select cf-in">
+          <option value="">What can we help with?</option>
+          <option>General home repair</option>
+          <option>Interior renovation</option>
+          <option>Electrical work</option>
+          <option>Exterior / landscaping</option>
+          <option>Annual maintenance plan</option>
+          <option>Not sure — need a diagnosis</option>
+        </select>
+      </div>
+      <div class="cf-group"><label class="cf-lbl">Tell Us What's Going On</label><input class="cf-in" type="text" placeholder="Describe the issue — photos welcome once we connect"></div>
+      <button type="submit" class="cf-btn">Request Free Quote →</button>
+      <p class="cf-note">We respond same day. No obligation, no pressure — just an honest assessment and a number.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="f-brand">Ridgeline <span>Home Services</span></div>
+  <div class="f-copy">© 2026 Ridgeline Home Services · Austin, TX · All rights reserved.</div>
+  <div class="f-lic">Licensed · Insured · Locally Owned</div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('lifted',scrollY>20));
+const obs=new IntersectionObserver(els=>els.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
+}),{threshold:0.07});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+document.getElementById('cf').addEventListener('submit',e=>{
+  e.preventDefault();
+  alert("Got it — we'll be in touch today with a quote.");
+  e.target.reset();
+});
+</script>
+</body>
+</html>

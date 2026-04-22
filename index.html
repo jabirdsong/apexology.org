@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="pyramid_icon.png">
     <link rel="shortcut icon" href="favicon.ico">
-    <meta name="description" content="Apexology builds custom websites for local Austin businesses. Professional, fast, and built to get you found.">
+    <meta name="description" content="Apexology is a growth advisor for local Austin businesses. We diagnose what's costing you customers, then build the solution — websites, AI, SEO, and process optimization.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -31,7 +31,6 @@
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
         html{scroll-behavior:smooth;}
         body{background:var(--black);color:var(--w);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
-        /* cursor: default system pointer */
         body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.45;}
         .cur-dot,.cur-ring{display:none;}
         nav{position:fixed;top:0;width:100%;z-index:500;padding:1.6rem 5rem;display:flex;justify-content:space-between;align-items:center;transition:all 0.4s;}
@@ -111,6 +110,14 @@
             opacity:0;
             animation:fadeUp 0.9s ease forwards 0.4s;
         }
+        .hero h1 .hero-line-1,
+        .hero h1 .hero-line-2{
+            display:block;
+            line-height:1.02;
+        }
+        .hero h1 .hero-line-1{
+            margin-bottom:0.1em;
+        }
         /* Gold shimmer on italic spans */
         .hero h1 em{
             font-style:italic;
@@ -127,13 +134,15 @@
             100%{background-position:220% center;}
         }
 
-        .typing-wrap{display:inline-block;min-width:300px;}
+        .typing-wrap{
+            display:inline-block;
+            min-height:1em;
+        }
         .typing-text{color:var(--gold);}
         .typing-cur{display:inline-block;width:3px;height:0.82em;background:var(--gold);margin-left:2px;vertical-align:middle;animation:curBlink 0.85s step-end infinite;}
         @keyframes curBlink{0%,100%{opacity:1;}50%{opacity:0;}}
-        .hero-sub{margin-top:2.5rem;font-size:1.05rem;color:var(--w55);max-width:500px;line-height:1.85;opacity:0;animation:fadeUp 0.9s ease forwards 0.65s;}
+        .hero-sub{margin-top:2.5rem;font-size:1.05rem;color:var(--w55);max-width:560px;line-height:1.85;opacity:0;animation:fadeUp 0.9s ease forwards 0.65s;}
         .hero-actions{margin-top:3.5rem;display:flex;gap:1.8rem;align-items:center;opacity:0;animation:fadeUp 0.9s ease forwards 0.85s;}
-        /* Discover indicator — inline, right of the last button */
         .hero-scroll{display:flex;align-items:center;gap:0.75rem;margin-left:0.6rem;opacity:0;animation:fadeUp 0.9s ease forwards 1.3s;}
         .scroll-track{width:1px;height:46px;background:var(--w25);position:relative;overflow:hidden;flex-shrink:0;}
         .scroll-track::after{content:'';position:absolute;top:-100%;width:100%;height:45%;background:var(--gold);animation:scrollDown 1.8s ease-in-out infinite;}
@@ -277,7 +286,6 @@
         /* ─── ANIMATIONS ───────────────────────────────────────── */
         @keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
 
-        /* Spring-physics reveal — cubic-bezier approximating spring overshoot */
         .reveal{
             opacity:0;
             transform:translateY(48px);
@@ -285,7 +293,6 @@
         }
         .reveal.in{opacity:1;transform:translateY(0);}
 
-        /* Directional variants */
         .reveal-left{
             opacity:0;
             transform:translateX(-48px);
@@ -307,7 +314,6 @@
         }
         .reveal-scale.in{opacity:1;transform:scale(1);}
 
-        /* Stagger delays — finer-grained than before */
         .d1{transition-delay:0.08s;}
         .d2{transition-delay:0.16s;}
         .d3{transition-delay:0.24s;}
@@ -354,10 +360,8 @@
 
 
 <section class="hero" id="home" tabindex="-1">
-    <!-- Background grid drift -->
     <div class="hero-grid"></div>
 
-    <!-- Fluid silk blob animation -->
     <div class="hero-silk">
         <canvas id="silkCanvas"></canvas>
         <div class="hs-b hs-b1"></div>
@@ -367,8 +371,11 @@
     </div>
 
     <div class="hero-inner" id="heroInner">
-        <h1>Your <span class="typing-wrap"><span class="typing-text" id="typEl"></span><span class="typing-cur"></span></span><br>deserves to be <em>found.</em></h1>
-        <p class="hero-sub">We study what gets businesses found. Then we build it. Your business is great. The right customers just haven't found you yet.</p>
+        <h1>
+            <span class="hero-line-1">Your <span class="typing-wrap"><span class="typing-text" id="typEl"></span><span class="typing-cur"></span></span></span>
+            <span class="hero-line-2">deserves to be <em>found.</em></span>
+        </h1>
+        <p class="hero-sub">We diagnose what's costing your business customers. Then we build the fix &mdash; whether that's a website, AI automation, SEO, or the systems running behind the scenes. Your business is great. The right customers just haven't found you yet.</p>
         <div class="hero-actions">
             <a href="#contact" class="btn btn-gold"><span>Start the Conversation</span></a>
             <a href="#value" class="btn btn-ghost"><span>How We Work &rarr;</span></a>
@@ -397,7 +404,7 @@
     <div class="val-grid">
         <div>
             <div class="eyebrow reveal-left"><div class="ey-ln"></div>What Apexology Is</div>
-            <h2 class="sec-title reveal-left d1">Not just a web agency. A <em>business growth advisor</em> who builds the solutions.</h2>
+            <h2 class="sec-title reveal-left d1">Not another agency. A <em>growth partner</em> who diagnoses the problem, then builds the fix.</h2>
             <div class="val-body">
                 <p class="reveal d2">Most agencies lead with deliverables. We lead with diagnosis. Before we build anything, we'll identify exactly what's costing your business customers. Then we build the solution that fixes it. <strong>The website is the result of the strategy. Not a replacement for it.</strong></p>
                 <p class="reveal d3">You've put years into building something people love. But if Google can't find you, your best customers can't either. In a city growing as fast as Austin, the businesses that win aren't always the best. They're the ones that show up first.</p>
@@ -414,12 +421,12 @@
 
 
 <section class="sec-alt" id="services">
-    <div class="eyebrow reveal"><div class="ey-ln"></div>What We Deliver</div>
-    <h2 class="sec-title reveal d1">Three ways we generate <em>real value</em> for your business.</h2>
+    <div class="eyebrow reveal"><div class="ey-ln"></div>What We Do</div>
+    <h2 class="sec-title reveal d1">Whatever it takes to get you <em>found and chosen.</em></h2>
     <div class="svc-grid">
-        <div class="svc reveal"><div class="svc-shine"></div><div class="svc-n">01</div><h3>Website Design &amp; Build</h3><p>A professional, mobile-first website built around your business. Not a template dropped into your name. Custom copy written for your customers, responsive design that works on every screen, and booking forms that actually get used. We've built sites for barbershops in Leander and tax offices in Austin. Every one of them custom.</p><div class="svc-ft">Starting at $1,200</div></div>
-        <div class="svc reveal d1"><div class="svc-shine"></div><div class="svc-n">02</div><h3>Content &amp; Strategy</h3><p>We'll research your business, your actual customers, and what your competitors in Austin are missing. Then we'll write copy that speaks directly to the people you want through your door. Not copy that could belong to anyone.</p><div class="svc-ft">Included in every project</div></div>
-        <div class="svc reveal d2"><div class="svc-shine"></div><div class="svc-n">03</div><h3>SEO &amp; Monthly Growth</h3><p>Ongoing SEO that keeps your website climbing Google every month. We'll write the content, track what's working, and adjust when something isn't. You run the business. We'll make sure people can find it.</p><div class="svc-ft">From $500/month &middot; Ongoing growth</div></div>
+        <div class="svc reveal"><div class="svc-shine"></div><div class="svc-n">01</div><h3>Web Presence &amp; Build</h3><p>Custom websites built around how your customers actually search. Mobile-first, fast, written for the people you want through your door. Not template-dropped with your name on it.</p><div class="svc-ft">Starting at $1,200</div></div>
+        <div class="svc reveal d1"><div class="svc-shine"></div><div class="svc-n">02</div><h3>SEO &amp; AEO</h3><p>Traditional SEO gets you ranked on Google. AEO gets you surfaced when someone asks ChatGPT or Gemini for a recommendation. We do both &mdash; because your next customer isn't just searching anymore.</p><div class="svc-ft">From $500/month</div></div>
+        <div class="svc reveal d2"><div class="svc-shine"></div><div class="svc-n">03</div><h3>AI &amp; Process Optimization</h3><p>AI receptionists, automated intake, workflow automation, and operational audits that surface where your business is leaking time, money, or leads. 3.5 years of consulting experience, scoped to your size.</p><div class="svc-ft">Custom scoped</div></div>
     </div>
 </section>
 
@@ -444,7 +451,7 @@
         <div class="founder-body">
             <div class="eyebrow reveal-right"><div class="ey-ln"></div>The Founder</div>
             <h2 class="sec-title reveal-right d1">Built by someone who <em>studies</em> what works. And builds what wins.</h2>
-            <p class="reveal-right d2">Jared spent 3.5 years at a global consulting firm advising organizations on operations, systems, and growth strategy. That background, combined with hands-on AI tool development and web experience, means every Apexology client gets the kind of strategic thinking that was previously reserved for larger companies with bigger agencies.</p>
+            <p class="reveal-right d2">Jared spent 3.5 years at a global consulting firm advising organizations on operations, systems, and growth strategy. Apexology applies that same consulting discipline &mdash; diagnose the real problem, then build the right fix &mdash; to local businesses. Sometimes that's a website. Sometimes it's an AI receptionist. Sometimes it's fixing a broken process nobody's looked at in ten years.</p>
             <p class="reveal-right d3">He started Apexology because he believes "Keep Austin Weird" isn't just a bumper sticker. That means supporting your small businesses: the barbershop, the tax office, and the family restaurant deserve the same presence as the big brands. A website isn't just a page. It's where your best version begins.</p>
             <div class="founder-sig reveal-right d4">
                 <div class="sig-ln"></div>
@@ -550,7 +557,7 @@
     <h2 class="sec-title reveal d1">Start for free. <em>Invest when you're ready.</em></h2>
     <div class="discovery-bar reveal d2">
         <div class="disc-left">
-            <div class="disc-tag">Start Here — No Cost</div>
+            <div class="disc-tag">Start Here &mdash; No Cost</div>
             <div class="disc-title">Free Intro Call</div>
             <div class="disc-sub">A 20-minute conversation to understand your business and whether we're the right fit. No pitch, no pressure. If something is costing you customers, we'll tell you what it is before you spend a dollar.</div>
         </div>
@@ -563,7 +570,7 @@
         <div class="disc-left">
             <div class="disc-tag">Optional Deep Dive</div>
             <div class="disc-title">Growth Audit</div>
-            <div class="disc-sub">A written diagnostic of exactly what's costing your business customers, what we'd build to fix it, and what the return looks like. A standalone deliverable — whether you hire us or not. Applies as credit toward any project.</div>
+            <div class="disc-sub">A written diagnostic of exactly what's costing your business customers, what we'd build to fix it, and what the return looks like. A standalone deliverable &mdash; whether you hire us or not. Applies as credit toward any project.</div>
         </div>
         <div class="disc-right">
             <div class="disc-price">$300</div>
@@ -675,13 +682,11 @@
 <footer>
     <div class="f-logo">APEX<span>OLOGY</span></div>
     <div class="f-copy">&copy; 2026 Apexology. Austin, Texas. All rights reserved.</div>
-    <div class="f-tag">The study of being the best. So your customers can find you.</div>
+    <div class="f-tag">We study what works. We build what wins.</div>
 </footer>
 
 
 <script>
-/* ─── CUSTOM CURSOR (disabled — system cursor active) ───────────── */
-
 /* ─── NAV SCROLL STATE ──────────────────────────────────────────── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
@@ -701,7 +706,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 /* ─── TYPING ANIMATION ───────────────────────────────────────────── */
-const words = ['tax service','barbershop','restaurant','law firm','salon','landscaper','gym','contractor','dentist','accountant'];
+const words = ['tax service','barbershop','restaurant','law firm','salon','landscaping business','gym','contracting business','dental practice','accounting firm','wellness studio','home service','local business','small business'];
 let wi = 0, ci = 0, del = false;
 const tel = document.getElementById('typEl');
 function type() {
@@ -759,15 +764,6 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
     resize();
     window.addEventListener('resize', resize);
 
-    /*
-     * Each ribbon is a bezier curve with control points that
-     * oscillate independently. The thick stroke + blur wrapper
-     * creates the fluid silk illusion.
-     *
-     * pt: { bx, by }  — base position (0–1 coords)
-     *     { ay, fy }  — y-oscillation amplitude and frequency
-     *     { px }      — x phase offset for organic feeling
-     */
     const ribbons = [
         {
             pts: [
@@ -826,7 +822,7 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
     let t0 = null;
     function frame(ts) {
         if (!t0) t0 = ts;
-        const t = ts - t0; // ms
+        const t = ts - t0;
         ctx.clearRect(0, 0, W, H);
         ribbons.forEach(r => drawRibbon(r, t));
         requestAnimationFrame(frame);

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pay App Automation for Specialty Trade Subs — Apexology</title>
+  <meta name="description" content="Specialty trade subcontractors in Austin TX: stop rebuilding pay apps for every GC. One input, every format. AIA G702, Textura, Procore. Book a free 15-min call." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F7F5F0;
+      --surface:   #FFFFFF;
+      --border:    rgba(0,0,0,0.10);
+      --border-md: rgba(0,0,0,0.18);
+      --text:      #111110;
+      --muted:     #6B6B67;
+      --hint:      #A0A09B;
+      --accent:    #111110;
+      --success:   #1D9E75;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-pill: 100px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      background: var(--surface);
+      border-bottom: 0.5px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 20px;
+      border: 0.5px solid var(--border-md);
+      border-radius: var(--radius-pill);
+      background: var(--surface);
+      color: var(--text);
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+    .nav-cta:hover { background: var(--bg); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 4.5rem 2rem 3.5rem;
+      background: var(--surface);
+      border-bottom: 0.5px solid var(--border);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+      max-width: 640px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 13px 26px;
+      background: var(--text);
+      color: #fff;
+      border-radius: var(--radius-pill);
+      transition: opacity 0.15s;
+      cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.82; }
+
+    .cta-note {
+      font-size: 12px;
+      color: var(--hint);
+    }
+
+    /* ── STAT BAR ── */
+    .stat-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      background: var(--surface);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .stat-item {
+      padding: 1.5rem 2rem;
+      border-right: 0.5px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 30px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 3.5rem 2rem;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--hint);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 520px;
+      font-weight: 300;
+    }
+
+    /* surface wrapper for alternating bg */
+    .surface-section {
+      background: var(--surface);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    /* ── CARD GRIDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 2rem;
+    }
+
+    .card {
+      padding: 1.25rem;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+
+    .card-icon {
+      font-size: 24px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 2rem;
+    }
+
+    .step-card {
+      padding: 1.25rem;
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+    }
+
+    .step-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 38px;
+      color: var(--border-md);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── QUOTE ── */
+    .quote-block {
+      padding: 1.75rem 2rem;
+      background: var(--surface);
+      border-left: 2px solid var(--text);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 2rem 0;
+    }
+
+    .quote-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .quote-attr {
+      font-size: 12px;
+      color: var(--hint);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── AUDIT CARD ── */
+    .audit-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .audit-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 46px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .audit-price-sub {
+      font-size: 12px;
+      color: var(--hint);
+      margin-bottom: 1.75rem;
+    }
+
+    .audit-list {
+      list-style: none;
+      margin-bottom: 1.75rem;
+    }
+
+    .audit-list li {
+      font-size: 14px;
+      color: var(--muted);
+      padding: 8px 0;
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .audit-list li:last-child { border-bottom: none; }
+
+    .check {
+      color: var(--success);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .location-tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      border: 0.5px solid var(--border);
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .cta-section h2 {
+      max-width: 420px;
+      margin: 0 auto 1rem;
+    }
+
+    .cta-section .section-body {
+      margin: 0 auto 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.75rem 2rem;
+      border-top: 0.5px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--hint);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .hero { padding: 3rem 1.25rem 2.5rem; }
+      section { padding: 2.5rem 1.25rem; }
+      .stat-item { padding: 1.25rem 1.25rem; }
+      footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">Apexology</span>
+    <!-- REPLACE # with your Calendly link -->
+    <a class="nav-cta" href="#">Book a free call</a>
+  </nav>
+
+  <!-- HERO -->
+  <div style="background: var(--surface); border-bottom: 0.5px solid var(--border);">
+    <div class="hero">
+      <p class="eyebrow">For electrical · plumbing · HVAC subcontractors · Austin TX</p>
+      <h1>Stop rebuilding your pay apps <em>from scratch every month.</em></h1>
+      <p class="hero-sub">You're billing 3 to 4 GCs in 3 to 4 different formats. AIA G702, Textura, Procore, custom Excel. Same data, different circus, every billing cycle. We automate that.</p>
+      <div class="cta-row">
+        <!-- REPLACE # with your Calendly link -->
+        <a class="btn-primary" href="#">Book a free 15-min call</a>
+        <span class="cta-note">Austin / Leander TX · Specialty trades only</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAT BAR -->
+  <div class="stat-bar">
+    <div class="stat-item">
+      <div class="stat-num">5%</div>
+      <div class="stat-label">of subs are always paid on time</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">20–40</div>
+      <div class="stat-label">hours/month lost to pay app reformatting</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">day delay from one missed cutoff</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">$497</div>
+      <div class="stat-label">to audit your billing process</div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="surface-section">
+    <section>
+      <p class="section-label">The problem</p>
+      <h2>Every GC wants it different. That's the whole problem.</h2>
+      <p class="section-body">You do the work. Then you rebuild the same billing data for each GC, in their format, by their cutoff, every single month. Miss one cutoff and you wait 30 more days to get paid.</p>
+      <div class="card-grid">
+        <div class="card">
+          <i class="ti ti-file-invoice card-icon" aria-hidden="true"></i>
+          <div class="card-title">Multiple GC formats</div>
+          <div class="card-desc">AIA G702/G703, Textura, Procore Pay, Trimble, custom PDFs. All from the same SOV data.</div>
+        </div>
+        <div class="card">
+          <i class="ti ti-calendar-x card-icon" aria-hidden="true"></i>
+          <div class="card-title">Hard cutoff dates</div>
+          <div class="card-desc">Miss the 1st? You wait until next month. One fire drill costs you 30 or more days of cash flow.</div>
+        </div>
+        <div class="card">
+          <i class="ti ti-file-x card-icon" aria-hidden="true"></i>
+          <div class="card-title">Lien waiver chaos</div>
+          <div class="card-desc">Four waiver types, conditional vs unconditional. Wrong type means rejected app and more delays.</div>
+        </div>
+        <div class="card">
+          <i class="ti ti-clock-off card-icon" aria-hidden="true"></i>
+          <div class="card-title">Owner hours wasted</div>
+          <div class="card-desc">You or your admin burning nights on billing paperwork instead of running the business.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <p class="section-label">How it works</p>
+    <h2>One input. Every output.</h2>
+    <p class="section-body">Enter your Schedule of Values once per project. We generate every GC's required format automatically. The right template, the right file, ready to submit.</p>
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Enter your SOV once</div>
+        <div class="step-desc">Line items, percentages, retainage. One time per project, not once per GC.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Select your GCs</div>
+        <div class="step-desc">Hensel Phelps wants AIA G702. DPR wants Procore. Harvey-Cleary wants their Excel. We know the difference.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Generate and submit</div>
+        <div class="step-desc">Every pay app in the right format, with lien waivers attached, before the cutoff.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">Get paid on time</div>
+        <div class="step-desc">No more fire drills. No more 30-day delays from a missed cutoff or a kicked-back app.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIT -->
+  <div class="surface-section">
+    <section>
+      <p class="section-label">The audit</p>
+      <h2>Start with a $497 Pay App Audit.</h2>
+      <p class="section-body">We map your entire billing workflow. Every GC, every format, every hour spent. We show you exactly what it's costing you. You keep the report regardless of what you decide next.</p>
+
+      <div class="quote-block">
+        <p class="quote-text">"The G703 is where we lose money or make it back. Get the percent complete wrong on two line items and the GC cuts your application by $30,000 and you're waiting another 30 days."</p>
+        <p class="quote-attr">R. Osei · Controller, Cascade Plumbing</p>
+      </div>
+
+      <div class="audit-card">
+        <div class="audit-price">$497</div>
+        <div class="audit-price-sub">One-time &nbsp;·&nbsp; Credits toward full build &nbsp;·&nbsp; You keep the report</div>
+        <ul class="audit-list">
+          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Full billing workflow map, every step and every GC</li>
+          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Admin hour quantification and dollar cost</li>
+          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Cash flow delay risk broken down by project</li>
+          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Written findings report, yours to keep</li>
+          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Clear ROI estimate if you automate</li>
+        </ul>
+        <!-- REPLACE # with your Calendly link -->
+        <a class="btn-primary" href="#">Book your free discovery call</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- WHO IT'S FOR -->
+  <section>
+    <p class="section-label">Who this is for</p>
+    <h2>Built for shops doing real commercial work.</h2>
+    <p class="section-body">If you're running 3 to 6 active commercial jobs, billing multiple GCs, and your admin or you is buried in pay app paperwork every month, this is built for you.</p>
+    <div class="card-grid">
+      <div class="card">
+        <i class="ti ti-bolt card-icon" aria-hidden="true"></i>
+        <div class="card-title">Electrical subs</div>
+        <div class="card-desc">Commercial electrical contractors, 5 to 15 crew, multiple active jobs across different GCs.</div>
+      </div>
+      <div class="card">
+        <i class="ti ti-droplet card-icon" aria-hidden="true"></i>
+        <div class="card-title">Plumbing subs</div>
+        <div class="card-desc">Commercial plumbing contractors tired of rebuilding G702s for every GC portal every month.</div>
+      </div>
+      <div class="card">
+        <i class="ti ti-wind card-icon" aria-hidden="true"></i>
+        <div class="card-title">HVAC subs</div>
+        <div class="card-desc">Mechanical contractors with complex SOVs spread across multiple active commercial projects.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="surface-section">
+    <section class="cta-section">
+      <span class="location-tag">Austin · Leander · Cedar Park · Round Rock TX</span>
+      <h2>Ready to stop doing pay apps by hand?</h2>
+      <p class="section-body">15 minutes. No pitch. We ask questions about your shop and tell you honestly if we can help.</p>
+      <!-- REPLACE # with your Calendly link -->
+      <a class="btn-primary" href="#">Book a free 15-min call</a>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">Apexology</div>
+      <!-- REPLACE with your actual URL -->
+      <div class="footer-note">Leander, TX · apexology.com</div>
+    </div>
+    <div class="footer-note">Jared Birdsong · Founder · Business Operations &amp; AI Automation</div>
+  </footer>
+
+</body>
+</html>

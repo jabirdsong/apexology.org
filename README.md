@@ -1,2 +1,2 @@
 # apexology.org
-Apexology — AI-powered web design and automation agency serving local businesses 
+Apexology — Consulting agency serving local businesses 

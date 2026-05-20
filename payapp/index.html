@@ -1,576 +1,1274 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pay App Automation for Specialty Trade Subs — Apexology</title>
-  <meta name="description" content="Specialty trade subcontractors in Austin TX: stop rebuilding pay apps for every GC. One input, every format. AIA G702, Textura, Procore. Book a free 15-min call." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pay App Automation · Apexology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
 
-    :root {
-      --bg:        #F7F5F0;
-      --surface:   #FFFFFF;
-      --border:    rgba(0,0,0,0.10);
-      --border-md: rgba(0,0,0,0.18);
-      --text:      #111110;
-      --muted:     #6B6B67;
-      --hint:      #A0A09B;
-      --accent:    #111110;
-      --success:   #1D9E75;
-      --radius-md: 10px;
-      --radius-lg: 14px;
-      --radius-pill: 100px;
+
+<style>
+  :root {
+    --ink: #1A1A1A;
+    --ink-2: #0F0F0F;
+    --steel: #2E4057;
+    --steel-2: #3a506b;
+    --amber: #C9A84C;
+    --amber-2: #D4B96A;
+    --bone: #F5F5F0;
+    --bone-2: #ebebe3;
+    --text: #1C1C1C;
+    --rule: rgba(28,28,28,0.12);
+    --rule-dark: rgba(245,245,240,0.10);
+    --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --body: "Inter", "Helvetica Neue", Arial, sans-serif;
+    --hero: "Playfair Display", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--body);
+    color: var(--text);
+    background: var(--bone);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+
+  /* ---------- Layout ---------- */
+  .wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  .section { padding: 96px 0; position: relative; }
+  .section.dark { background: var(--ink); color: var(--bone); }
+  .section.tight { padding: 72px 0; }
+  @media (max-width: 720px) { .section { padding: 64px 0; } }
+
+  /* Blueprint grid texture */
+  .blueprint {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(244,162,0,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,162,0,0.06) 1px, transparent 1px),
+      linear-gradient(rgba(244,162,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,162,0,0.03) 1px, transparent 1px);
+    background-size: 96px 96px, 96px 96px, 16px 16px, 16px 16px;
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 30%, #000 30%, transparent 85%);
+  }
+  .blueprint.light {
+    background-image:
+      linear-gradient(rgba(46,64,87,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46,64,87,0.07) 1px, transparent 1px),
+      linear-gradient(rgba(46,64,87,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46,64,87,0.04) 1px, transparent 1px);
+  }
+
+  /* ---------- Typography ---------- */
+  .display {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  .h1 { font-size: clamp(44px, 6.5vw, 88px); }
+  .h2 { font-size: clamp(34px, 4.5vw, 60px); }
+  .h3 { font-size: clamp(22px, 2.2vw, 30px); }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--steel);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .dark .eyebrow { color: var(--amber); }
+  .eyebrow::before {
+    content: ""; width: 28px; height: 1px; background: currentColor; opacity: 0.6;
+  }
+  .lede { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; max-width: 56ch; color: rgba(28,28,28,0.78); }
+  .dark .lede { color: rgba(245,245,240,0.78); }
+  .mono { font-family: var(--mono); letter-spacing: 0.02em; }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(26,26,46,0.92);
+    backdrop-filter: saturate(140%) blur(8px);
+    color: var(--bone);
+    border-bottom: 1px solid rgba(245,245,240,0.08);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-logo {
+    height: 40px; width: auto; display: block;
+    /* preserve crispness; the asset is already gold on transparent */
+  }
+  @media (max-width: 520px) { .brand-logo { height: 32px; } }
+  .brand-mark {
+    width: 28px; height: 28px; position: relative;
+    display: grid; place-items: center;
+    flex: 0 0 28px;
+  }
+  .brand-mark::before {
+    content: ""; position: absolute; inset: 0;
+    border: 1.5px solid var(--amber); transform: rotate(45deg);
+  }
+  .brand-mark::after {
+    content: ""; width: 6px; height: 6px; background: var(--amber);
+  }
+  /* Empty placeholder for a future favicon/icon */
+  .brand-mark.is-empty::before,
+  .brand-mark.is-empty::after { content: none; }
+  .brand-name {
+    font-family: var(--display); font-weight: 700; font-size: 20px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .brand-sub {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    color: rgba(245,245,240,0.55); text-transform: uppercase;
+    padding-left: 12px; margin-left: 12px; border-left: 1px solid rgba(245,245,240,0.18);
+  }
+  .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; }
+  .nav-links a {
+    color: rgba(245,245,240,0.7);
+    transition: color 180ms ease-out;
+    position: relative; padding: 4px 0;
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+    height: 1px; background: var(--amber);
+    transform: scaleX(0); transform-origin: left center;
+    transition: transform 220ms ease-out;
+  }
+  .nav-links a:hover { color: var(--bone); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-links a.is-active { color: var(--bone); }
+  .nav-links a.is-active::after { transform: scaleX(1); }
+  .nav .cta { display: inline-flex; }
+  @media (max-width: 820px) {
+    .nav-links { display: none; }
+    .brand-sub { display: none; }
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 10px;
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding: 16px 24px;
+    border: 1.5px solid transparent;
+    transition: transform 180ms ease-out, background 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out, box-shadow 180ms ease-out;
+    white-space: nowrap;
+    will-change: transform;
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+  .btn-primary {
+    background: var(--amber); color: var(--ink);
+    box-shadow: 0 1px 0 rgba(120,80,0,0.4) inset, 0 6px 18px -10px rgba(244,162,0,0.55);
+  }
+  .btn-primary:hover {
+    background: var(--amber-2);
+    transform: scale(1.02);
+    box-shadow: 0 1px 0 rgba(120,80,0,0.4) inset, 0 12px 28px -12px rgba(244,162,0,0.7);
+  }
+  .btn-primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 0 rgba(120,80,0,0.4) inset, 0 4px 12px -8px rgba(244,162,0,0.4);
+  }
+  .btn-primary .arrow { transition: transform 180ms ease-out; }
+  .btn-primary:hover .arrow { transform: translateX(3px); }
+  .btn-ghost {
+    color: var(--bone); border-color: rgba(245,245,240,0.28);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    border-color: var(--bone);
+    background: rgba(245,245,240,0.05);
+    transform: scale(1.02);
+  }
+  .btn-ghost:active { transform: scale(0.98); background: rgba(245,245,240,0.08); }
+  .btn-ghost.on-light { color: var(--ink); border-color: rgba(28,28,28,0.28); }
+  .btn-ghost.on-light:hover { border-color: var(--ink); background: rgba(28,28,28,0.04); }
+  .btn-lg { padding: 20px 32px; font-size: 17px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 96px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(245,245,240,0.55);
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(245,245,240,0.12);
+    width: 100%;
+    max-width: 540px;
+    margin-bottom: 32px;
+  }
+  .hero-label .marker { color: var(--amber); }
+  .hero-label .spacer { flex: 1; height: 1px; background: rgba(245,245,240,0.12); }
+  .hero h1.display {
+    font-family: var(--hero);
+    text-transform: none;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+  }
+  .hero h1 {
+    margin: 0 0 24px;
+  }
+  .hero h1 .amber { color: var(--amber); }
+  .hero .lede { max-width: 56ch; color: rgba(245,245,240,0.78); }
+  .hero .lede .bracket { color: var(--amber); font-family: var(--mono); font-size: 0.92em; padding: 0 2px; }
+  .hero-ctas { display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap; }
+
+  .hero-content { position: relative; z-index: 1; padding-bottom: 80px; }
+  .hero-spec {
+    position: relative; z-index: 1;
+    border-top: 1px solid rgba(245,245,240,0.12);
+    border-bottom: 1px solid rgba(245,245,240,0.12);
+    padding: 32px 0;
+    margin-top: 40px;
+    transition: background 200ms ease-out;
+  }
+  .hero-spec:hover { background: rgba(245,245,240,0.02); }
+  .hero-spec-inner {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center;
+  }
+  .hero-spec .stat {
+    font-family: var(--display); font-weight: 800; font-size: clamp(40px, 5vw, 64px);
+    color: var(--amber); line-height: 1; letter-spacing: -0.01em;
+    transition: transform 200ms ease-out;
+  }
+  .hero-spec:hover .stat { transform: translateY(-1px); }
+  .hero-spec .label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(245,245,240,0.55);
+  }
+  .hero-spec .copy {
+    font-size: 17px; max-width: 52ch; color: rgba(245,245,240,0.88);
+  }
+  .hero-spec .source {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+    color: rgba(245,245,240,0.45); text-align: right;
+  }
+  @media (max-width: 820px) {
+    .hero-spec-inner { grid-template-columns: 1fr; gap: 16px; }
+    .hero-spec .source { text-align: left; }
+  }
+
+  /* Spec corners decoration */
+  .spec-corners { display: none; }
+
+  /* ---------- Pain section ---------- */
+  .pain-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    margin-top: 56px;
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+  .pain-card {
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 40px 36px;
+    background: transparent;
+    position: relative;
+    transition: transform 200ms ease-out, background 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease-out;
+  }
+  .pain-card::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0;
+    height: 2px; background: var(--steel);
+    transform: scaleX(0); transform-origin: left center;
+    transition: transform 260ms ease-out;
+  }
+  .pain-card:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -28px rgba(28,28,28,0.35);
+    z-index: 1;
+  }
+  .pain-card:hover::before { transform: scaleX(1); }
+  .pain-card .num {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+    color: var(--steel); margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .pain-card .num .iconbox {
+    width: 44px; height: 44px; border: 1.5px solid var(--ink);
+    display: grid; place-items: center;
+    background: var(--bone);
+  }
+  .pain-card h3 {
+    font-family: var(--display); font-weight: 700; font-size: 22px;
+    line-height: 1.2; margin: 0 0 12px; text-transform: none;
+    letter-spacing: -0.005em;
+  }
+  .pain-card p { margin: 0; color: rgba(28,28,28,0.72); font-size: 15.5px; }
+  @media (max-width: 900px) {
+    .pain-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Section header ---------- */
+  .section-head { max-width: 760px; }
+  .section-head h2 { margin: 16px 0 16px; }
+
+  /* ---------- How it works ---------- */
+  .how-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    margin-top: 56px;
+    position: relative;
+  }
+  .how-step {
+    padding: 36px 32px 36px 0;
+    position: relative;
+  }
+  .how-step + .how-step { padding-left: 32px; border-left: 1px dashed var(--rule); }
+  .how-step .stepnum {
+    font-family: var(--display); font-weight: 800; font-size: 84px;
+    line-height: 0.9; color: var(--amber);
+    letter-spacing: -0.02em;
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px;
+  }
+  .how-step .stepnum small {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    color: var(--steel); text-transform: uppercase;
+  }
+  .how-step h3 {
+    font-family: var(--display); font-weight: 700; font-size: 24px;
+    line-height: 1.15; margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0;
+  }
+  .how-step p { margin: 0; color: rgba(28,28,28,0.72); font-size: 15.5px; max-width: 38ch; }
+  @media (max-width: 900px) {
+    .how-grid { grid-template-columns: 1fr; }
+    .how-step + .how-step { border-left: 0; border-top: 1px dashed var(--rule); padding-left: 0; padding-top: 32px; }
+  }
+
+  /* ---------- Features ---------- */
+  .features-head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; }
+  @media (max-width: 820px) { .features-head { grid-template-columns: 1fr; } }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    margin-top: 56px;
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+  .feat {
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 32px 28px;
+    background: #fbfbf7;
+    position: relative;
+    transition: transform 200ms ease-out, background 200ms ease-out, box-shadow 200ms ease-out;
+  }
+  .feat::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0;
+    height: 2px; background: var(--steel);
+    transform: scaleX(0); transform-origin: left center;
+    transition: transform 260ms ease-out;
+  }
+  .feat:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -28px rgba(28,28,28,0.3);
+    z-index: 1;
+  }
+  .feat:hover::before { transform: scaleX(1); }
+  .feat .icon {
+    width: 36px; height: 36px;
+    margin-bottom: 20px;
+    color: var(--amber);
+  }
+  .feat h4 {
+    font-family: var(--display); font-weight: 700; font-size: 20px;
+    margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.005em;
+    color: var(--ink);
+  }
+  .feat p { margin: 0; color: rgba(28,28,28,0.7); font-size: 14.5px; line-height: 1.5; }
+  .feat .tag {
+    display: inline-block; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.18em; color: var(--steel); text-transform: uppercase;
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Quote section ---------- */
+  .quote-wrap {
+    display: grid; grid-template-columns: 1fr; gap: 40px;
+    align-items: start;
+    position: relative;
+  }
+  .quote {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(28px, 3.4vw, 46px);
+    line-height: 1.15;
+    color: var(--bone);
+    letter-spacing: -0.005em;
+    max-width: 22ch;
+    position: relative;
+  }
+  .quote .mark {
+    font-family: var(--mono); color: var(--amber);
+    font-size: 0.5em; line-height: 1; vertical-align: top;
+    margin-right: 8px;
+  }
+  .quote .accent { color: var(--amber); }
+  .quote-attr {
+    margin-top: 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .quote-attr .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--steel-2), var(--steel));
+    display: grid; place-items: center;
+    font-family: var(--display); font-weight: 700; font-size: 18px;
+    color: var(--bone); letter-spacing: 0.04em;
+    border: 1px solid rgba(245,245,240,0.2);
+  }
+  .quote-attr .who {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
+    color: rgba(245,245,240,0.85);
+  }
+  .quote-attr .who small {
+    display: block; color: rgba(245,245,240,0.5); font-size: 12px; margin-top: 2px;
+  }
+  .quote-footer {
+    margin-top: 56px; padding-top: 28px;
+    border-top: 1px solid rgba(245,245,240,0.12);
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
+    color: rgba(245,245,240,0.6);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .quote-footer .pin { color: var(--amber); }
+
+  /* ---------- Pricing ---------- */
+  .pricing-head { text-align: left; max-width: 820px; }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    margin-top: 56px;
+    border: 1px solid rgba(245,245,240,0.12);
+  }
+  .tier {
+    padding: 36px 28px 32px;
+    background: rgba(245,245,240,0.025);
+    border-right: 1px solid rgba(245,245,240,0.12);
+    display: flex; flex-direction: column;
+    position: relative;
+    color: var(--bone);
+    transition: transform 220ms ease-out, background 220ms ease-out, box-shadow 220ms ease-out;
+  }
+  .tier:last-child { border-right: 0; }
+  .tier:hover {
+    background: rgba(245,245,240,0.05);
+    transform: translateY(-2px);
+    z-index: 1;
+  }
+  .tier.popular {
+    background: linear-gradient(180deg, rgba(244,162,0,0.09), rgba(244,162,0,0.02));
+    outline: 1.5px solid var(--amber); outline-offset: -1.5px;
+    z-index: 1;
+  }
+  .tier.popular:hover {
+    background: linear-gradient(180deg, rgba(244,162,0,0.14), rgba(244,162,0,0.03));
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px -28px rgba(244,162,0,0.45);
+  }
+  .tier .badge {
+    position: absolute; top: -12px; left: 24px;
+    background: var(--amber); color: var(--ink);
+    font-family: var(--mono); font-weight: 600; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 6px 10px;
+  }
+  .tier .tier-num {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    color: rgba(245,245,240,0.45); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .tier h3 {
+    font-family: var(--display); font-weight: 700;
+    font-size: 32px; margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0;
+  }
+  .tier .for {
+    font-size: 13px; color: rgba(245,245,240,0.6);
+    margin: 0 0 24px; line-height: 1.45; min-height: 38px;
+  }
+  .tier .price {
+    display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px;
+  }
+  .tier .price .amt {
+    font-family: var(--display); font-weight: 800; font-size: 44px; line-height: 1;
+    color: var(--bone); letter-spacing: -0.01em;
+  }
+  .tier.popular .price .amt { color: var(--amber); }
+  .tier .price .per {
+    font-family: var(--mono); font-size: 13px; color: rgba(245,245,240,0.5);
+  }
+  .tier .divider {
+    height: 1px; background: rgba(245,245,240,0.12); margin: 22px 0 18px;
+  }
+  .tier ul {
+    list-style: none; padding: 0; margin: 0 0 24px;
+    display: flex; flex-direction: column; gap: 12px;
+    flex: 1;
+  }
+  .tier li {
+    display: flex; gap: 12px; font-size: 14.5px; line-height: 1.4;
+    color: rgba(245,245,240,0.88);
+  }
+  .tier li::before {
+    content: ""; width: 14px; height: 1px; background: var(--amber);
+    margin-top: 11px; flex: 0 0 14px;
+  }
+  .tier .tier-cta {
+    width: 100%; justify-content: center;
+    font-size: 13px; padding: 14px 18px;
+  }
+  .tier:not(.popular) .tier-cta {
+    background: transparent; border: 1.5px solid rgba(245,245,240,0.3); color: var(--bone);
+  }
+  .tier:not(.popular) .tier-cta:hover {
+    border-color: var(--amber); color: var(--amber);
+  }
+  @media (max-width: 1100px) {
+    .pricing-grid { grid-template-columns: 1fr 1fr; }
+    .tier { border-right: 1px solid rgba(245,245,240,0.12); border-bottom: 1px solid rgba(245,245,240,0.12); }
+    .tier:nth-child(2n) { border-right: 0; }
+    .tier:nth-last-child(-n+2) { border-bottom: 0; }
+  }
+  @media (max-width: 640px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .tier { border-right: 0; border-bottom: 1px solid rgba(245,245,240,0.12); }
+    .tier:last-child { border-bottom: 0; }
+  }
+  .pricing-note {
+    margin-top: 36px;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.03em;
+    color: rgba(245,245,240,0.65);
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .pricing-note .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(244,162,0,0.45); color: var(--amber);
+    padding: 6px 10px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .pricing-note .pill::before {
+    content: ""; width: 6px; height: 6px; background: var(--amber);
+  }
+
+  /* ---------- About ---------- */
+  .about-card {
+    display: grid; grid-template-columns: 220px 1fr; gap: 48px;
+    align-items: start;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 56px 0;
+  }
+  .about-mark {
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .about-mark .logo {
+    width: 96px; height: 96px;
+    position: relative;
+    display: grid; place-items: center;
+    border: 1.5px solid var(--ink);
+    background: var(--bone);
+  }
+  .about-mark .logo::before {
+    content: ""; width: 36px; height: 36px;
+    border: 2px solid var(--ink); transform: rotate(45deg);
+  }
+  .about-mark .logo::after {
+    content: ""; position: absolute; width: 8px; height: 8px; background: var(--amber);
+  }
+  .about-mark .ttl {
+    font-family: var(--display); font-weight: 800; font-size: 22px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .about-mark .sub {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+    color: var(--steel); text-transform: uppercase;
+  }
+  .about-content h3 {
+    font-family: var(--display); font-weight: 700; font-size: clamp(28px, 3vw, 38px);
+    margin: 0 0 6px; text-transform: uppercase; line-height: 1.05; letter-spacing: -0.005em;
+  }
+  .about-content .role {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em;
+    color: var(--steel); text-transform: uppercase; margin-bottom: 24px;
+  }
+  .about-content p { margin: 0; max-width: 60ch; font-size: 16px; color: rgba(28,28,28,0.78); }
+  .about-meta {
+    display: flex; gap: 32px; margin-top: 24px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em;
+    color: var(--steel);
+  }
+  .about-meta div small {
+    display: block; font-size: 10px; letter-spacing: 0.18em;
+    color: rgba(28,28,28,0.45); text-transform: uppercase; margin-bottom: 4px;
+  }
+  @media (max-width: 760px) {
+    .about-card { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .final h2 {
+    margin: 16px auto 24px;
+    max-width: 18ch;
+  }
+  .final h2 .amber { color: var(--amber); }
+  .final .lede {
+    margin: 0 auto 40px;
+    text-align: center;
+    color: rgba(245,245,240,0.78);
+    max-width: 56ch;
+  }
+  .final .below {
+    margin-top: 22px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em;
+    color: rgba(245,245,240,0.55); text-transform: uppercase;
+  }
+  .final .below span { color: var(--amber); }
+
+  /* ---------- Footer ---------- */
+  .footer {
+    background: var(--ink-2);
+    color: rgba(245,245,240,0.7);
+    padding: 40px 0 32px;
+    border-top: 1px solid rgba(245,245,240,0.08);
+  }
+  .footer-inner {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 32px; align-items: center;
+  }
+  .footer .l { display: flex; align-items: center; gap: 12px; }
+  .footer .c {
+    text-align: center; font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  .footer .r {
+    text-align: right; font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(245,245,240,0.45);
+  }
+  .footer .r .tag { color: var(--amber); }
+  @media (max-width: 720px) {
+    .footer-inner { grid-template-columns: 1fr; text-align: left; gap: 16px; }
+    .footer .c, .footer .r { text-align: left; }
+  }
+
+  /* Hero diagram on right */
+  .hero-layout {
+    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;
+  }
+  @media (max-width: 980px) { .hero-layout { grid-template-columns: 1fr; gap: 40px; } }
+
+  .doc-stack {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 0.92;
+    max-width: 520px;
+    margin-left: auto;
+  }
+  .doc {
+    position: absolute;
+    background: var(--bone);
+    color: var(--ink);
+    border: 1px solid rgba(28,28,28,0.5);
+    box-shadow: 0 12px 40px -16px rgba(0,0,0,0.6), 0 2px 0 rgba(0,0,0,0.2);
+    padding: 14px 14px 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.5;
+    width: 62%;
+    aspect-ratio: 4 / 5.2;
+    overflow: hidden;
+  }
+  .doc .doc-head {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 8px;
+    font-weight: 600; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .doc .doc-head .stamp {
+    background: var(--ink); color: var(--bone); padding: 2px 6px;
+  }
+  .doc .row {
+    display: grid; grid-template-columns: 1fr 36px; gap: 6px;
+    padding: 2px 0;
+    border-bottom: 1px dotted rgba(28,28,28,0.25);
+  }
+  .doc .row span:last-child { text-align: right; color: var(--steel); }
+  .doc .row.hl { color: var(--amber); font-weight: 600; }
+  .doc .tot {
+    margin-top: 8px; padding-top: 6px;
+    border-top: 1px solid var(--ink);
+    display: flex; justify-content: space-between;
+    font-weight: 700; font-size: 11px;
+  }
+  .doc.d1 { top: 0; left: 0; transform: rotate(-6deg); z-index: 1; }
+  .doc.d2 { top: 8%; left: 24%; transform: rotate(-1deg); z-index: 2; }
+  .doc.d3 { top: 14%; left: 44%; transform: rotate(4deg); z-index: 3;
+    background: var(--ink); color: var(--bone); border-color: var(--amber);
+  }
+  .doc.d3 .doc-head { border-bottom-color: var(--amber); color: var(--amber); }
+  .doc.d3 .doc-head .stamp { background: var(--amber); color: var(--ink); }
+  .doc.d3 .row { border-bottom-color: rgba(245,245,240,0.15); }
+  .doc.d3 .row span:last-child { color: var(--amber); }
+  .doc.d3 .tot { border-top-color: var(--amber); }
+
+  .pipe-arrow {
+    position: absolute;
+    bottom: -2%;
+    left: 8%;
+    right: 8%;
+    height: 56px;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .pipe-arrow svg { width: 100%; height: 100%; }
+
+  /* Sticky CTA bar (mobile) */
+  @media (max-width: 600px) {
+    .hero-ctas .btn { flex: 1; padding: 14px 16px; font-size: 14px; }
+  }
+
+  /* Quote hover */
+  .quote-block {
+    padding-left: 24px;
+    margin-left: -24px;
+    border-left: 2px solid transparent;
+    transition: border-color 220ms ease-out;
+  }
+  .quote-block:hover { border-left-color: var(--amber); }
+  .quote-block:hover .quote { color: #ffffff; }
+  .quote-block:hover .quote-attr .who { color: var(--amber); }
+  .quote, .quote-attr .who { transition: color 220ms ease-out; }
+
+  /* Stat hover reveal */
+  .hero-spec .source-detail {
+    display: block;
+    max-height: 0; opacity: 0;
+    overflow: hidden;
+    transition: max-height 260ms ease-out, opacity 260ms ease-out, margin-top 260ms ease-out;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em;
+    color: rgba(245,245,240,0.55); margin-top: 0;
+  }
+  .hero-spec:hover .source-detail,
+  .hero-spec:focus-within .source-detail {
+    max-height: 60px; opacity: 1; margin-top: 6px;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 600ms ease-out, transform 600ms ease-out;
+    will-change: opacity, transform;
+  }
+  .reveal.is-in { opacity: 1; transform: translateY(0); }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
     }
+    .reveal { opacity: 1; transform: none; }
+  }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* ── NAV ── */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.25rem 2rem;
-      background: var(--surface);
-      border-bottom: 0.5px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .nav-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 18px;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-cta {
-      font-size: 13px;
-      font-weight: 500;
-      padding: 8px 20px;
-      border: 0.5px solid var(--border-md);
-      border-radius: var(--radius-pill);
-      background: var(--surface);
-      color: var(--text);
-      transition: background 0.15s;
-      cursor: pointer;
-    }
-    .nav-cta:hover { background: var(--bg); }
-
-    /* ── HERO ── */
-    .hero {
-      padding: 4.5rem 2rem 3.5rem;
-      background: var(--surface);
-      border-bottom: 0.5px solid var(--border);
-      max-width: 780px;
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.08;
-      letter-spacing: -0.025em;
-      margin-bottom: 1.25rem;
-      max-width: 640px;
-    }
-
-    h1 em {
-      font-style: italic;
-      color: var(--muted);
-    }
-
-    .hero-sub {
-      font-size: 17px;
-      line-height: 1.65;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .cta-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 13px 26px;
-      background: var(--text);
-      color: #fff;
-      border-radius: var(--radius-pill);
-      transition: opacity 0.15s;
-      cursor: pointer;
-    }
-    .btn-primary:hover { opacity: 0.82; }
-
-    .cta-note {
-      font-size: 12px;
-      color: var(--hint);
-    }
-
-    /* ── STAT BAR ── */
-    .stat-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      background: var(--surface);
-      border-bottom: 0.5px solid var(--border);
-    }
-
-    .stat-item {
-      padding: 1.5rem 2rem;
-      border-right: 0.5px solid var(--border);
-    }
-    .stat-item:last-child { border-right: none; }
-
-    .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 30px;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      padding: 3.5rem 2rem;
-      max-width: 780px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--hint);
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(22px, 3vw, 34px);
-      line-height: 1.15;
-      letter-spacing: -0.015em;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-body {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 520px;
-      font-weight: 300;
-    }
-
-    /* surface wrapper for alternating bg */
-    .surface-section {
-      background: var(--surface);
-      border-top: 0.5px solid var(--border);
-      border-bottom: 0.5px solid var(--border);
-    }
-
-    /* ── CARD GRIDS ── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-top: 2rem;
-    }
-
-    .card {
-      padding: 1.25rem;
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-    }
-
-    .card-icon {
-      font-size: 24px;
-      color: var(--muted);
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 6px;
-      line-height: 1.3;
-    }
-
-    .card-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* ── HOW IT WORKS ── */
-    .step-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 12px;
-      margin-top: 2rem;
-    }
-
-    .step-card {
-      padding: 1.25rem;
-      background: var(--bg);
-      border-radius: var(--radius-lg);
-    }
-
-    .step-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 38px;
-      color: var(--border-md);
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-
-    .step-title {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .step-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* ── QUOTE ── */
-    .quote-block {
-      padding: 1.75rem 2rem;
-      background: var(--surface);
-      border-left: 2px solid var(--text);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      margin: 2rem 0;
-    }
-
-    .quote-text {
-      font-family: 'DM Serif Display', serif;
-      font-size: 17px;
-      line-height: 1.55;
-      color: var(--text);
-      font-style: italic;
-      margin-bottom: 0.75rem;
-    }
-
-    .quote-attr {
-      font-size: 12px;
-      color: var(--hint);
-      letter-spacing: 0.02em;
-    }
-
-    /* ── AUDIT CARD ── */
-    .audit-card {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      margin-top: 2rem;
-    }
-
-    .audit-price {
-      font-family: 'DM Serif Display', serif;
-      font-size: 46px;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .audit-price-sub {
-      font-size: 12px;
-      color: var(--hint);
-      margin-bottom: 1.75rem;
-    }
-
-    .audit-list {
-      list-style: none;
-      margin-bottom: 1.75rem;
-    }
-
-    .audit-list li {
-      font-size: 14px;
-      color: var(--muted);
-      padding: 8px 0;
-      border-bottom: 0.5px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .audit-list li:last-child { border-bottom: none; }
-
-    .check {
-      color: var(--success);
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-
-    .location-tag {
-      display: inline-block;
-      font-size: 11px;
-      padding: 4px 12px;
-      border-radius: var(--radius-pill);
-      border: 0.5px solid var(--border);
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .cta-section h2 {
-      max-width: 420px;
-      margin: 0 auto 1rem;
-    }
-
-    .cta-section .section-body {
-      margin: 0 auto 2rem;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 1.75rem 2rem;
-      border-top: 0.5px solid var(--border);
-      background: var(--surface);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 15px;
-    }
-
-    .footer-note {
-      font-size: 12px;
-      color: var(--hint);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      nav { padding: 1rem 1.25rem; }
-      .hero { padding: 3rem 1.25rem 2.5rem; }
-      section { padding: 2.5rem 1.25rem; }
-      .stat-item { padding: 1.25rem 1.25rem; }
-      footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+  /* Selection */
+  ::selection { background: var(--amber); color: var(--ink); }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <span class="nav-logo">Apexology</span>
-    <!-- REPLACE # with your Calendly link -->
-    <a class="nav-cta" href="#">Book a free call</a>
-  </nav>
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="brand" aria-label="Apexology">
+      <span style="font-family:var(--display);font-weight:700;letter-spacing:0.12em;font-size:20px;color:var(--amber);text-transform:uppercase;line-height:1;">APEXOLOGY</span>
+      <span class="brand-sub">Pay App Automation</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+    </nav>
+    <a href="#cta" class="btn btn-primary" style="padding:12px 18px; font-size:13px;">
+      Book Your Free Discovery Call <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <div style="background: var(--surface); border-bottom: 0.5px solid var(--border);">
-    <div class="hero">
-      <p class="eyebrow">For electrical · plumbing · HVAC subcontractors · Austin TX</p>
-      <h1>Stop rebuilding your pay apps <em>from scratch every month.</em></h1>
-      <p class="hero-sub">You're billing 3 to 4 GCs in 3 to 4 different formats. AIA G702, Textura, Procore, custom Excel. Same data, different circus, every billing cycle. We automate that.</p>
-      <div class="cta-row">
-        <!-- REPLACE # with your Calendly link -->
-        <a class="btn-primary" href="#">Book a free 15-min call</a>
-        <span class="cta-note">Austin / Leander TX · Specialty trades only</span>
+<!-- HERO -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="blueprint" aria-hidden="true"></div>
+  <div class="wrap hero-content">
+    <div class="hero-layout">
+      <div>
+        <div class="hero-label">
+          <span>Pay App Automation · For Specialty Trade Subs</span>
+          <span class="spacer"></span>
+          <span>Austin · TX</span>
+        </div>
+        <h1 class="display h1">
+          Stop Rebuilding<br>the Same Pay App<br><span class="amber">Four Different Ways.</span>
+        </h1>
+        <p class="lede">
+          You've got 4 GCs, 4 formats, and one billing deadline. Apexology
+          automates the reformatting so your draw hits this cycle, not the next one.
+        </p>
+        <div class="hero-ctas">
+          <a href="#cta" class="btn btn-primary btn-lg">
+            Book Your Free Discovery Call <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#how" class="btn btn-ghost btn-lg">See How It Works</a>
+        </div>
+      </div>
+
+      <!-- Document diagram -->
+      <div class="doc-stack" aria-hidden="true">
+        <div class="doc d1">
+          <div class="doc-head"><span>AIA G702</span><span class="stamp">GC&nbsp;01</span></div>
+          <div class="row"><span>Demo &amp; Layout</span><span>100%</span></div>
+          <div class="row"><span>Underground Rough</span><span>92%</span></div>
+          <div class="row hl"><span>Top-Out Plumbing</span><span>74%</span></div>
+          <div class="row"><span>Fixture Setting</span><span>30%</span></div>
+          <div class="row"><span>Test &amp; Balance</span><span>0%</span></div>
+          <div class="tot"><span>Due</span><span>$184,212</span></div>
+        </div>
+        <div class="doc d2">
+          <div class="doc-head"><span>Textura CSV</span><span class="stamp">GC&nbsp;02</span></div>
+          <div class="row"><span>Mobilization</span><span>100%</span></div>
+          <div class="row"><span>Conduit Rough</span><span>88%</span></div>
+          <div class="row"><span>Switchgear</span><span>62%</span></div>
+          <div class="row hl"><span>Trim Out</span><span>41%</span></div>
+          <div class="row"><span>Commissioning</span><span>12%</span></div>
+          <div class="tot"><span>Due</span><span>$97,540</span></div>
+        </div>
+        <div class="doc d3">
+          <div class="doc-head"><span>Apexology</span><span class="stamp">Master</span></div>
+          <div class="row"><span>Schedule of Values</span><span>SOV</span></div>
+          <div class="row"><span>GC Format Map</span><span>4 / 4</span></div>
+          <div class="row hl"><span>Lien Waivers (TX)</span><span>Auto</span></div>
+          <div class="row"><span>Cutoff Alerts</span><span>On</span></div>
+          <div class="row"><span>Export Bundle</span><span>Ready</span></div>
+          <div class="tot"><span>Submit</span><span>1-Click</span></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- STAT BAR -->
-  <div class="stat-bar">
-    <div class="stat-item">
-      <div class="stat-num">5%</div>
-      <div class="stat-label">of subs are always paid on time</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">20–40</div>
-      <div class="stat-label">hours/month lost to pay app reformatting</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">30+</div>
-      <div class="stat-label">day delay from one missed cutoff</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">$497</div>
-      <div class="stat-label">to audit your billing process</div>
+  <!-- Stat bar -->
+  <div class="wrap">
+    <div class="hero-spec">
+      <div class="hero-spec-inner">
+        <div>
+          <div class="label">Industry Reality</div>
+          <div class="stat">5%</div>
+        </div>
+        <div class="copy">
+          Only <strong>5% of subcontractors</strong> are always paid on time.
+          The other 95% are rebuilding the same pay app every month
+          and waiting another draw cycle when they miss a cutoff.
+        </div>
+        <div class="source">
+          [Src] Levelset<br>2023 Construction<br>Payment Report
+          <span class="source-detail">Hover · n=764 commercial subs surveyed nationally</span>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- PROBLEM -->
-  <div class="surface-section">
-    <section>
-      <p class="section-label">The problem</p>
-      <h2>Every GC wants it different. That's the whole problem.</h2>
-      <p class="section-body">You do the work. Then you rebuild the same billing data for each GC, in their format, by their cutoff, every single month. Miss one cutoff and you wait 30 more days to get paid.</p>
-      <div class="card-grid">
-        <div class="card">
-          <i class="ti ti-file-invoice card-icon" aria-hidden="true"></i>
-          <div class="card-title">Multiple GC formats</div>
-          <div class="card-desc">AIA G702/G703, Textura, Procore Pay, Trimble, custom PDFs. All from the same SOV data.</div>
+<!-- PAIN -->
+<section class="section" data-screen-label="02 Pain">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Problem</span>
+      <h2 class="display h2">Sound Familiar?</h2>
+      <p class="lede">Three things every commercial sub in Austin tells us, in roughly the same words, before they sign on.</p>
+    </div>
+
+    <div class="pain-grid">
+      <article class="pain-card">
+        <div class="num">
+          <span>FAILURE MODE / 01</span>
+          <div class="iconbox" aria-hidden="true">
+            <!-- format icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+          </div>
         </div>
-        <div class="card">
-          <i class="ti ti-calendar-x card-icon" aria-hidden="true"></i>
-          <div class="card-title">Hard cutoff dates</div>
-          <div class="card-desc">Miss the 1st? You wait until next month. One fire drill costs you 30 or more days of cash flow.</div>
+        <h3>Every GC wants a different format.</h3>
+        <p>AIA G702. Textura. Procore. That one custom Excel the PM "tweaked." You're rebuilding from scratch every single month, on every single job.</p>
+      </article>
+
+      <article class="pain-card">
+        <div class="num">
+          <span>FAILURE MODE / 02</span>
+          <div class="iconbox" aria-hidden="true">
+            <!-- clock icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+          </div>
         </div>
-        <div class="card">
-          <i class="ti ti-file-x card-icon" aria-hidden="true"></i>
-          <div class="card-title">Lien waiver chaos</div>
-          <div class="card-desc">Four waiver types, conditional vs unconditional. Wrong type means rejected app and more delays.</div>
+        <h3>Miss the cutoff, wait another 30 days.</h3>
+        <p>One missed billing window and the draw slides a full month. Cash flow takes the hit across every active job, not just the one you missed.</p>
+      </article>
+
+      <article class="pain-card">
+        <div class="num">
+          <span>FAILURE MODE / 03</span>
+          <div class="iconbox" aria-hidden="true">
+            <!-- moon icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>
+          </div>
         </div>
-        <div class="card">
-          <i class="ti ti-clock-off card-icon" aria-hidden="true"></i>
-          <div class="card-title">Owner hours wasted</div>
-          <div class="card-desc">You or your admin burning nights on billing paperwork instead of running the business.</div>
-        </div>
-      </div>
-    </section>
+        <h3>The owner is doing billing at 10pm.</h3>
+        <p>You should be on the job site, not in QuickBooks at night reconciling line items. That's not why you started this company.</p>
+      </article>
+    </div>
   </div>
+</section>
 
-  <!-- HOW IT WORKS -->
-  <section>
-    <p class="section-label">How it works</p>
-    <h2>One input. Every output.</h2>
-    <p class="section-body">Enter your Schedule of Values once per project. We generate every GC's required format automatically. The right template, the right file, ready to submit.</p>
-    <div class="step-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <div class="step-title">Enter your SOV once</div>
-        <div class="step-desc">Line items, percentages, retainage. One time per project, not once per GC.</div>
+<!-- HOW IT WORKS -->
+<section class="section" id="how" style="background:#fbfbf7; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);" data-screen-label="03 How It Works">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Process</span>
+      <h2 class="display h2">Three Steps. One Submit Button.</h2>
+      <p class="lede">No "platform migration." No 90-day onboarding. You're billing in your existing formats by the next cutoff.</p>
+    </div>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="stepnum">01<small>Setup · Once per project</small></div>
+        <h3>Enter Your SOV Once.</h3>
+        <p>Input your Schedule of Values per project, one time. We version it, we map it, you forget about it.</p>
       </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <div class="step-title">Select your GCs</div>
-        <div class="step-desc">Hensel Phelps wants AIA G702. DPR wants Procore. Harvey-Cleary wants their Excel. We know the difference.</div>
+      <div class="how-step">
+        <div class="stepnum">02<small>Monthly · 30 seconds</small></div>
+        <h3>Pick Your GCs.</h3>
+        <p>Select which GCs you're billing this cycle. Each one already has its format mapped to your master SOV.</p>
       </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <div class="step-title">Generate and submit</div>
-        <div class="step-desc">Every pay app in the right format, with lien waivers attached, before the cutoff.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">04</div>
-        <div class="step-title">Get paid on time</div>
-        <div class="step-desc">No more fire drills. No more 30-day delays from a missed cutoff or a kicked-back app.</div>
+      <div class="how-step">
+        <div class="stepnum">03<small>Submit · Same day</small></div>
+        <h3>Download Every Format.</h3>
+        <p>AIA G702, Textura CSV, Procore-ready file, Texas lien waivers. All four. All done. One bundle.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- AUDIT -->
-  <div class="surface-section">
-    <section>
-      <p class="section-label">The audit</p>
-      <h2>Start with a $497 Pay App Audit.</h2>
-      <p class="section-body">We map your entire billing workflow. Every GC, every format, every hour spent. We show you exactly what it's costing you. You keep the report regardless of what you decide next.</p>
+<!-- FEATURES -->
+<section class="section" id="features" data-screen-label="04 Features">
+  <div class="wrap">
+    <div class="features-head">
+      <div>
+        <span class="eyebrow">Capabilities</span>
+        <h2 class="display h2" style="margin-top:16px;">One Input.<br>Every Output.</h2>
+      </div>
+      <p class="lede" style="margin:0;">A single source of truth, your SOV, feeds every format every GC asks for, plus the waivers and alerts that keep draws moving.</p>
+    </div>
 
+    <div class="features-grid">
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 6h17l5 5v19H7z"></path><path d="M24 6v5h5"></path><path d="M11 17h14M11 21h14M11 25h9"></path></svg>
+        <h4>AIA G702 / G703 Auto-Generation</h4>
+        <p>The standard application + continuation sheet, generated against the current SOV percentages. No Excel surgery.</p>
+        <span class="tag">Industry Standard</span>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 10h24M6 18h24M6 26h24"></path><circle cx="11" cy="10" r="2.5" fill="var(--bone)"></circle><circle cx="22" cy="18" r="2.5" fill="var(--bone)"></circle><circle cx="15" cy="26" r="2.5" fill="var(--bone)"></circle></svg>
+        <h4>Textura &amp; Procore Exports</h4>
+        <p>One-click bundles formatted exactly to each GC's portal spec. CSV, PDF, or direct submit on the Executive tier.</p>
+        <span class="tag">Portal-Ready</span>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6l11 5v8c0 7-5 11-11 13C7 30 7 19 7 19v-8z"></path><path d="M14 18l3 3 6-6"></path></svg>
+        <h4>Texas Lien Waiver Automation</h4>
+        <p>All four statutory types: conditional, unconditional, progress, final. Populated, dated, and ready to sign.</p>
+        <span class="tag">Tex. Prop. Â§ 53.281</span>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="7" width="26" height="22"></rect><path d="M5 13h26"></path><path d="M11 19v6M17 17v8M23 21v4M28 16v9"></path></svg>
+        <h4>Project Billing Dashboard</h4>
+        <p>Every job, every GC, every draw status in one view. Color-coded by cutoff, sorted by what hits cash first.</p>
+        <span class="tag">All-Jobs View</span>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="18" cy="18" r="12"></circle><path d="M18 11v8l5 3"></path><path d="M28 5l3 3M5 8l3-3"></path></svg>
+        <h4>Cutoff Date Alerts</h4>
+        <p>SMS + email warnings 5, 3, and 1 day out. Per GC, per project. Miss a draw because nobody told you? Not anymore.</p>
+        <span class="tag">SMS + Email</span>
+      </div>
+      <div class="feat">
+        <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6h18v24H9z"></path><path d="M14 12h8M14 17h8M14 22h5"></path><circle cx="25" cy="24" r="4" fill="var(--bone)"></circle><path d="M25 22v2l1.5 1"></path></svg>
+        <h4>SOV Version Control</h4>
+        <p>Change orders bump the SOV. We keep every prior revision and tag which version was submitted with each draw.</p>
+        <span class="tag">Audit Trail</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="section dark" data-screen-label="05 Quote">
+  <div class="blueprint" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;">
+    <div class="quote-wrap">
       <div class="quote-block">
-        <p class="quote-text">"The G703 is where we lose money or make it back. Get the percent complete wrong on two line items and the GC cuts your application by $30,000 and you're waiting another 30 days."</p>
-        <p class="quote-attr">R. Osei · Controller, Cascade Plumbing</p>
+      <span class="eyebrow">Why It Matters</span>
+      <p class="quote">
+        <span class="mark">â€œ</span>The G703 is where we <span class="accent">lose money or make it back</span>. Get the percent complete wrong on two line items and the GC cuts your application by <span class="accent">$30,000</span>, and you're waiting another <span class="accent">30 days</span>.<span class="mark" style="margin-left:6px; margin-right:0;">â€</span>
+      </p>
+      <div class="quote-attr">
+        <div class="avatar">RO</div>
+        <div class="who">
+          R. Osei
+          <small>Controller · Cascade Plumbing</small>
+        </div>
       </div>
+      </div>
+      <div class="quote-footer">
+        <span>Built specifically for specialty trade subs doing commercial work in <span class="pin">Austin, TX</span>.</span>
+        <span>EL · PL · HVAC</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="audit-card">
-        <div class="audit-price">$497</div>
-        <div class="audit-price-sub">One-time &nbsp;·&nbsp; Credits toward full build &nbsp;·&nbsp; You keep the report</div>
-        <ul class="audit-list">
-          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Full billing workflow map, every step and every GC</li>
-          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Admin hour quantification and dollar cost</li>
-          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Cash flow delay risk broken down by project</li>
-          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Written findings report, yours to keep</li>
-          <li><i class="ti ti-circle-check check" aria-hidden="true"></i> Clear ROI estimate if you automate</li>
+<!-- PRICING -->
+<section class="section dark" id="pricing" data-screen-label="06 Pricing" style="padding-top:0;">
+  <div class="wrap" style="padding-top:96px;">
+    <div class="pricing-head">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="display h2" style="margin:16px 0 16px;">Pick Your Level.<br>Stop Paying for Hours You Don't Have.</h2>
+      <p class="lede">Four tiers. Three of them are real options. The fourth exists for shops where billing chaos is costing six figures a year. You'll know which one you are.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="tier">
+        <div class="tier-num">Tier 01 · Starter</div>
+        <h3>Starter</h3>
+        <p class="for">For shops just getting started with commercial billing.</p>
+        <div class="price"><span class="amt">$1,500</span><span class="per">/ mo</span></div>
+        <div class="divider"></div>
+        <ul>
+          <li>1â€“2 GCs</li>
+          <li>AIA G702 / G703 automation</li>
+          <li>Single trade type</li>
+          <li>Email support</li>
         </ul>
-        <!-- REPLACE # with your Calendly link -->
-        <a class="btn-primary" href="#">Book your free discovery call</a>
+        <a href="#cta" class="btn tier-cta">Start Here →</a>
       </div>
-    </section>
-  </div>
 
-  <!-- WHO IT'S FOR -->
-  <section>
-    <p class="section-label">Who this is for</p>
-    <h2>Built for shops doing real commercial work.</h2>
-    <p class="section-body">If you're running 3 to 6 active commercial jobs, billing multiple GCs, and your admin or you is buried in pay app paperwork every month, this is built for you.</p>
-    <div class="card-grid">
-      <div class="card">
-        <i class="ti ti-bolt card-icon" aria-hidden="true"></i>
-        <div class="card-title">Electrical subs</div>
-        <div class="card-desc">Commercial electrical contractors, 5 to 15 crew, multiple active jobs across different GCs.</div>
+      <!-- Standard -->
+      <div class="tier popular">
+        <span class="badge">Most Popular</span>
+        <div class="tier-num" style="color:rgba(244,162,0,0.7);">Tier 02 · Standard</div>
+        <h3>Standard</h3>
+        <p class="for">For shops billing 3â€“5 GCs with different formats every month.</p>
+        <div class="price"><span class="amt">$3,000</span><span class="per">/ mo</span></div>
+        <div class="divider"></div>
+        <ul>
+          <li>3â€“5 GCs</li>
+          <li>Full pay app + lien waiver automation</li>
+          <li>Multi-project dashboard</li>
+          <li>Priority support</li>
+          <li>Cutoff date alerts</li>
+        </ul>
+        <a href="#cta" class="btn btn-primary tier-cta">Book Standard Call →</a>
       </div>
-      <div class="card">
-        <i class="ti ti-droplet card-icon" aria-hidden="true"></i>
-        <div class="card-title">Plumbing subs</div>
-        <div class="card-desc">Commercial plumbing contractors tired of rebuilding G702s for every GC portal every month.</div>
+
+      <!-- Pro -->
+      <div class="tier">
+        <div class="tier-num">Tier 03 · Pro</div>
+        <h3>Pro</h3>
+        <p class="for">For shops scaling fast with complex billing across multiple trades.</p>
+        <div class="price"><span class="amt">$5,000</span><span class="per">/ mo</span></div>
+        <div class="divider"></div>
+        <ul>
+          <li>Unlimited GCs</li>
+          <li>CO tracking + change order documentation</li>
+          <li>90-day cash flow forecasting</li>
+          <li>Dedicated account setup</li>
+        </ul>
+        <a href="#cta" class="btn tier-cta">Talk to Sales →</a>
       </div>
-      <div class="card">
-        <i class="ti ti-wind card-icon" aria-hidden="true"></i>
-        <div class="card-title">HVAC subs</div>
-        <div class="card-desc">Mechanical contractors with complex SOVs spread across multiple active commercial projects.</div>
+
+      <!-- Executive -->
+      <div class="tier">
+        <div class="tier-num">Tier 04 · Executive</div>
+        <h3>Executive</h3>
+        <p class="for">For the shop that's done tolerating billing chaos at any level.</p>
+        <div class="price"><span class="amt">$15,000</span><span class="per">/ mo</span></div>
+        <div class="divider"></div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>White-glove onboarding + full workflow audit</li>
+          <li>Custom GC portal integrations (direct Textura / Procore submission)</li>
+          <li>Weekly billing review call with Apexology team</li>
+          <li>Priority build queue for custom features</li>
+        </ul>
+        <a href="#cta" class="btn tier-cta">Apply for Executive →</a>
       </div>
     </div>
-  </section>
 
-  <!-- FINAL CTA -->
-  <div class="surface-section">
-    <section class="cta-section">
-      <span class="location-tag">Austin · Leander · Cedar Park · Round Rock TX</span>
-      <h2>Ready to stop doing pay apps by hand?</h2>
-      <p class="section-body">15 minutes. No pitch. We ask questions about your shop and tell you honestly if we can help.</p>
-      <!-- REPLACE # with your Calendly link -->
-      <a class="btn-primary" href="#">Book a free 15-min call</a>
-    </section>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div>
-      <div class="footer-logo">Apexology</div>
-      <!-- REPLACE with your actual URL -->
-      <div class="footer-note">Leander, TX · apexology.com</div>
+    <div class="pricing-note">
+      <span class="pill">$497 Pay App Audit Included</span>
+      <span>All tiers include a Pay App Audit. The cost is credited toward your first month, at every level.</span>
     </div>
-    <div class="footer-note">Jared Birdsong · Founder · Business Operations &amp; AI Automation</div>
-  </footer>
+  </div>
+</section>
 
-</body>
-</html>
+<!-- ABOUT -->
+<section class="section" id="about" data-screen-label="07 About">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">About</span>
+      <h2 class="display h2">The Shop Behind The Software.</h2>
+    </div>
+
+    <div class="about-card" style="margin-top:48px;">
+      <div class="about-mark">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div class="ttl">Apexology</div>
+          <div class="sub">Business Automation · Austin TX</div>
+        </div>
+      </div>
+      <div class="about-content">
+        <h3>Jared Birdsong</h3>
+        <div class="role">Founder · Apexology</div>
+        <p>
+          Apexology is a business automation firm based in Austin, TX. We build software
+          specifically for the problems that cost specialty trade subs real money every
+          month, starting with the pay app chaos that nobody talks about but everyone
+          deals with.
+        </p>
+        <div class="about-meta">
+          <div><small>Studio</small>Austin, TX</div>
+          <div><small>Focus</small>Specialty Trade Subs</div>
+          <div><small>Method</small>Study. Build. Ship.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="cta" data-screen-label="08 Final CTA">
+  <div class="blueprint" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;">
+    <span class="eyebrow" style="justify-content:center; display:inline-flex;">The Ask</span>
+    <h2 class="display h2">
+      You're Already Doing The Work.<br>
+      <span class="amber">Stop Doing It Twice.</span>
+    </h2>
+    <p class="lede">
+      Book a free 15-minute call. We'll tell you exactly how much your current
+      process is costing you, or we'll tell you it's not a fit. Either way, you
+      leave with clarity.
+    </p>
+    <a href="#" class="btn btn-primary btn-lg">
+      Book Your Free Discovery Call <span class="arrow" aria-hidden="true">→</span>
+    </a>
+    <div class="below">No Pitch · <span>No Pressure</span> · Just the Numbers</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="l">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <div style="font-family:var(--display); font-weight:700; letter-spacing:0.08em; color:var(--bone); text-transform:uppercase; font-size:15px;">Apexology</div>
+        <div style="font-family:var(--mono); font-size:11px; letter-spacing:0.06em; opacity:0.6;">Austin, TX · apexology.com</div>
+      </div>
+    </div>
+    <div class="c">© 2026 Apexology · We Study What Works. We Build What Wins.</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  (function() {
+    var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.section .section-head, .pain-card, .how-step, .feat, .tier, .quote-wrap, .about-card, .final .lede, .final h2, .pricing-note');
+    targets.forEach(function(el, i) {
+      el.classList.add('reveal');
+      el.style.transitionDelay = Math.min(i % 4, 3) * 60 + 'ms';
+    });
+    if (prefersReduced || !('IntersectionObserver' in window)) {
+      targets.forEach(function(el){ el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    targets.forEach(function(el){ io.observe(el); });
+  })();
+
+  // Nav: active section indicator
+  (function() {
+    var links = document.querySelectorAll('.nav-links a[href^="#"]');
+    if (!links.length) return;
+    var map = {};
+    links.forEach(function(a) {
+      var id = a.getAttribute('href').slice(1);
+      var sec = document.getElementById(id);
+      if (sec) map[id] = { link: a, sec: sec };
+    });
+    var ids = Object.keys(map);
+    function update() {
+      var y = window.scrollY + 100;
+      var current = null;
+      ids.forEach(function(id) {
+        if (map[id].sec.offsetTop <= y) current = id;
+      });
+      ids.forEach(function(id) {
+        map[id].link.classList.toggle('is-active', id === current);
+      });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+</script>
+
+
+
+</body></html>

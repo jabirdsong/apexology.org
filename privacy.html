@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Privacy Policy — Apexology</title>
+<meta name="description" content="How Apexology collects, uses, and protects information submitted through our website.">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+    :root{
+        --black:#000;
+        --s1:#111118;
+        --s2:#16161e;
+        --gold:#c9a84c;
+        --gold-lt:#e2c06a;
+        --gold-bd:rgba(201,168,76,0.18);
+        --gold-dim:rgba(201,168,76,0.10);
+        --cream:#f0ede6;
+        --w80:rgba(240,237,230,0.80);
+        --w55:rgba(240,237,230,0.55);
+        --w25:rgba(240,237,230,0.25);
+        --w10:rgba(240,237,230,0.10);
+        --w05:rgba(240,237,230,0.05);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;}
+    a{color:var(--gold);}
+
+    /* ─── NAV ─── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.4rem 5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--w05);}
+    .nav-brand{display:inline-flex;align-items:center;}
+    .nav-logo-img{height:64px;width:auto;display:block;}
+    .nav-back{font-size:0.76rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w55);text-decoration:none;transition:color 0.25s;font-weight:400;}
+    .nav-back:hover{color:var(--gold);}
+
+    /* ─── HERO ─── */
+    .p-hero{padding:11rem 5rem 4rem;text-align:center;border-bottom:1px solid var(--gold-bd);background:linear-gradient(180deg,var(--s1) 0%,var(--black) 100%);}
+    .p-hero .eyebrow{font-size:0.74rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+    .p-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,3.8rem);font-weight:400;letter-spacing:0.01em;line-height:1.1;color:var(--cream);}
+    .p-hero h1 em{color:var(--gold);font-style:italic;font-weight:300;}
+    .p-hero .updated{margin-top:1.2rem;font-size:0.78rem;color:var(--w55);letter-spacing:0.08em;}
+
+    /* ─── PROSE ─── */
+    .prose{max-width:760px;margin:0 auto;padding:5rem 2rem 6rem;}
+    .prose section{padding:2.4rem 0;border-top:1px solid var(--w05);}
+    .prose section:first-of-type{border-top:none;padding-top:0;}
+    .prose h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--gold);letter-spacing:0.01em;margin-bottom:1.1rem;}
+    .prose h2 .num{font-size:0.78rem;font-family:'DM Sans',sans-serif;color:var(--w25);letter-spacing:0.2em;margin-right:0.7rem;vertical-align:middle;font-weight:400;}
+    .prose p{color:var(--w80);font-size:0.98rem;margin-bottom:0.95rem;}
+    .prose p:last-child{margin-bottom:0;}
+    .prose ul{list-style:none;margin:0.6rem 0 0.9rem;padding:0;}
+    .prose ul li{color:var(--w80);font-size:0.96rem;padding:0.35rem 0 0.35rem 1.4rem;position:relative;}
+    .prose ul li::before{content:'';position:absolute;left:0;top:1.1rem;width:0.6rem;height:1px;background:var(--gold);}
+    .prose strong{color:var(--cream);font-weight:500;}
+    .prose em{color:var(--gold-lt);font-style:italic;}
+    .prose a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-bd);transition:border-color 0.2s;}
+    .prose a:hover{border-bottom-color:var(--gold);}
+
+    /* ─── FOOTER ─── */
+    footer{background:var(--s1);border-top:1px solid var(--gold-bd);padding:3rem 5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .f-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;letter-spacing:0.22em;}
+    .f-logo span{color:var(--gold);}
+    .f-copy{font-size:0.73rem;color:var(--w55);}
+    .f-legal{font-size:0.7rem;color:var(--w55);margin-top:0.4rem;}
+    .f-legal a{color:var(--w55);text-decoration:none;border-bottom:1px solid transparent;transition:color 0.2s,border-color 0.2s;}
+    .f-legal a:hover{color:var(--gold);border-bottom-color:var(--gold-bd);}
+    .f-tag{font-size:0.72rem;color:var(--w55);font-style:italic;}
+
+    @media (max-width:760px){
+        nav{padding:1.1rem 1.4rem;}
+        .nav-logo-img{height:48px;}
+        .p-hero{padding:8rem 1.4rem 3rem;}
+        .prose{padding:3rem 1.4rem 4rem;}
+        footer{padding:2.2rem 1.4rem;flex-direction:column;text-align:center;}
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-brand" aria-label="Apexology — Home">
+        <img src="APEXOLOGY.png" alt="Apexology" class="nav-logo-img">
+    </a>
+    <a href="index.html" class="nav-back">&larr; Back to home</a>
+</nav>
+
+<header class="p-hero">
+    <div class="eyebrow">Legal</div>
+    <h1>Privacy <em>Policy</em></h1>
+    <div class="updated">Last updated: May 25, 2026</div>
+</header>
+
+<main class="prose">
+
+    <section>
+        <h2><span class="num">01</span>Who we are</h2>
+        <p>Apexology is a sole proprietorship operated by Jared Birdsong, based in Austin and Leander, Texas. We design websites and build digital tools for local small businesses across the United States.</p>
+        <p>If you have questions about this policy or want to make a privacy request, you can reach us through the <a href="index.html#contact">contact form</a> on our homepage. Please write "Privacy Request" at the start of your message so we can route it quickly.</p>
+    </section>
+
+    <section>
+        <h2><span class="num">02</span>What we collect</h2>
+        <p>We only collect information you give us directly through our website contact form. That includes:</p>
+        <ul>
+            <li>Your name</li>
+            <li>Your email address</li>
+            <li>Your phone number (optional)</li>
+            <li>Your business name</li>
+            <li>Your location</li>
+            <li>Your industry</li>
+            <li>The message you send us</li>
+        </ul>
+        <p>We do not run analytics, ad pixels, or background tracking on this site (see "Cookies" below).</p>
+    </section>
+
+    <section>
+        <h2><span class="num">03</span>How we use it</h2>
+        <p>We use the information you submit to:</p>
+        <ul>
+            <li>Respond to your inquiry</li>
+            <li>Deliver the services you've asked about</li>
+            <li>Follow up about a proposal or project we've discussed</li>
+        </ul>
+        <p><strong>We do not sell your information to third parties. We do not share it with advertisers. We do not add you to marketing lists you didn't ask to be on.</strong></p>
+    </section>
+
+    <section>
+        <h2><span class="num">04</span>Third-party services we use</h2>
+        <p>Our website relies on two third-party services to function:</p>
+        <ul>
+            <li><strong>Formspree</strong> — handles the delivery of our contact form submissions to our inbox. When you submit the form, your information passes through Formspree's servers. See their <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">privacy policy</a>.</li>
+            <li><strong>GitHub Pages</strong> — hosts this website. GitHub may collect basic server logs (such as IP addresses) as part of standard hosting operations.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2><span class="num">05</span>Cookies and tracking</h2>
+        <p>This website does not use tracking cookies, analytics tools, or advertising pixels at this time. If we add analytics in the future (for example, Google Analytics), we will update this section and clearly state what is being collected.</p>
+    </section>
+
+    <section>
+        <h2><span class="num">06</span>Your rights — Texas residents</h2>
+        <p>Under the Texas Data Privacy and Security Act, Texas residents have the right to:</p>
+        <ul>
+            <li>Access the personal information we hold about you</li>
+            <li>Correct inaccuracies in that information</li>
+            <li>Request deletion of your information</li>
+            <li>Opt out of the sale of your personal information (note: we do not sell information)</li>
+        </ul>
+        <p>To exercise any of these rights, contact us through the <a href="index.html#contact">contact form</a>.</p>
+    </section>
+
+    <section>
+        <h2><span class="num">07</span>Your rights — EU visitors (GDPR)</h2>
+        <p>If you are visiting from the European Union, you have the right to:</p>
+        <ul>
+            <li>Access the personal data we hold about you</li>
+            <li>Rectify (correct) any inaccurate data</li>
+            <li>Request erasure (deletion) of your data</li>
+            <li>Receive your data in a portable format</li>
+        </ul>
+        <p>Send any GDPR request through our <a href="index.html#contact">contact form</a> and we will respond within 30 days.</p>
+    </section>
+
+    <section>
+        <h2><span class="num">08</span>Children's privacy</h2>
+        <p>Our services are intended for business owners. We do not knowingly collect personal information from anyone under the age of 13. If you believe a child has submitted information through our site, please contact us and we will delete it.</p>
+    </section>
+
+    <section>
+        <h2><span class="num">09</span>How long we keep your information</h2>
+        <p>We retain inquiry data only as long as we need it to respond to you and complete any project that follows from the conversation. If you request deletion, we will remove your information from our records (records held by third-party processors like Formspree are subject to their own retention rules).</p>
+    </section>
+
+    <section>
+        <h2><span class="num">10</span>How to contact us</h2>
+        <p>The fastest way to reach us about anything in this policy — questions, requests, corrections, or deletion — is through the <a href="index.html#contact">contact form</a> on our homepage. Start your message with "Privacy Request" and we will respond within a reasonable timeframe.</p>
+    </section>
+
+    <section>
+        <h2><span class="num">11</span>Changes to this policy</h2>
+        <p>If we make material changes to how we collect or use information, we will update this page and revise the "Last updated" date at the top. Significant changes will be reflected here before they take effect.</p>
+        <p style="margin-top:1.4rem;color:var(--w55);font-size:0.85rem;"><em>Last updated: May 25, 2026</em></p>
+    </section>
+
+</main>
+
+<footer>
+    <div class="f-logo">APEX<span>OLOGY</span></div>
+    <div>
+        <div class="f-copy">&copy; 2026 Apexology. Austin, Texas. All rights reserved.</div>
+        <div class="f-legal"><a href="privacy.html">Privacy Policy</a></div>
+    </div>
+    <div class="f-tag">We study what works. We build what wins.</div>
+</footer>
+
+</body>
+</html>
